@@ -1,5 +1,6 @@
 import Question from "./Question";
 import {useState} from "react";
+import {Page} from "../PageEnum";
 
 class Answer {
     constructor(is_correct, text,number) {
@@ -18,7 +19,7 @@ const question1= new Question_Info("2+2 equals", [new Answer(true,4,1),new Answe
 const question2 = new Question_Info("2*2 equals",[new Answer(true,4,1),new Answer(false,3,2),new Answer(false,5,3)])
 const question3 = new Question_Info("What is root of 4",[new Answer(false,1,1),new Answer(true,2,2),new Answer(false,3,3),new Answer(false,4,4)])
 const questions=[question1,question2,question3]
-export default function Quiz(){
+export default function Quiz({setPage}){
     const [is_started,setIsStarted] = useState(false)
     const [is_checked, setIsChecked]=useState(false)
     const [question_num,setQuestionNum]=useState(0)
@@ -87,7 +88,7 @@ export default function Quiz(){
                     <button className="quiz_button" onClick={()=>{restartquiz()}}>Restart</button>
                 </div>
                 <div className="quiz_button_container">
-                    <button className="quiz_button" onClick={()=>{}}>Exit</button>
+                    <button className="quiz_button" onClick={()=>{setPage(Page.MainPage)}}>Exit</button>
                 </div>
             </div>
         </div>

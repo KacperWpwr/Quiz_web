@@ -1,0 +1,28 @@
+$navbar-height:7vh;
+
+body{
+  background-color: gainsboro;
+  margin: 0;
+}
+.navbar{
+  position: fixed;
+  background: rgb(97,4,144);
+  background: linear-gradient(90deg, rgba(97,4,144,1) 0%, rgba(100,12,196,1) 50%, rgba(0,179,255,1) 100%);
+  width: 100vw;
+  height: $navbar-height;
+  top: 0;
+  left: 0;
+  justify-items: revert;
+
+}
+.page_name{
+  position: relative;
+  top: 1vh;
+  font-size: 5vh;
+  font-family: "Baskerville Old Face";
+  color: oldlace;
+  margin-left: 1vw;
+  margin-right: 40vw;
+  cursor: pointer;
+
+}

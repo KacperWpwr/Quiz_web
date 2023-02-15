@@ -1,0 +1,69 @@
+@import "src/index";
+$main-page-height:calc(100vh - $navbar-height);
+$main-page-first-col-width:65vw;
+.main-page-container{
+  position: fixed;
+  display: flex;
+  top: $navbar-height;
+  left:0;
+  width: 100vw;
+  height: $main-page-height;
+}
+.main-page-first-batch{
+  height: $main-page-height;
+  width: $main-page-first-col-width;
+  margin-right: 2vw;
+
+}
+.main-page-last-quizes{
+  width: $main-page-first-col-width;
+  height: calc($main-page-height / 2 );
+  background-color: darkgray;
+}
+.main-page-mentions{
+  width:$main-page-first-col-width;
+  height: calc($main-page-height / 2 );
+  background-color: darkgray;
+}
+
+.main-page-users-followed{
+  width: 33vw;
+  height: $main-page-height;
+  background-color: darkgray;
+  overflow-y: scroll;
+}
+.main-page-section-name{
+  width:$main-page-first-col-width;
+  height: 2vw;
+  background-color: gainsboro;
+  font-size: 3vh;
+  color:black;
+}
+.main-page-last-quizes-display{
+  width: $main-page-first-col-width;
+  height: calc($main-page-height / 2 - 2vw);
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.main-page-quiz-profile{
+  height: calc($main-page-height / 2  - 6vh);
+  width: 10vw;
+  margin: 1vh 1vw;
+  display: inline-grid;
+
+
+}
+.main-page-quiz-name{
+  font-size: 1.5vh;
+  font-weight: bold;
+  margin-bottom: 5vh;
+}
+.main-page-quiz-info{
+  font-weight: bold;
+}
+.main-page-quiz-info-label{
+  margin-bottom: 1vh;
+}
+
