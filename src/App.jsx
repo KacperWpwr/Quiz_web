@@ -8,7 +8,7 @@ import {Page} from "./PageEnum";
 
 
 export default function App(){
-    const [page,setPage] = useState(Page.LoginPage);
+    const [page,setPage] = useState(Page.MainPage);
     const getpage= ()=>{
         switch (page) {
             case Page.MainPage: return <MainPage setPage={setPage}/>

@@ -1,6 +1,7 @@
 @import "src/index";
 $main-page-height:calc(100vh - $navbar-height);
 $main-page-first-col-width:65vw;
+$main-page-second-col-width: 33vw;
 .main-page-container{
   position: fixed;
   display: flex;
@@ -27,7 +28,7 @@ $main-page-first-col-width:65vw;
 }
 
 .main-page-users-followed{
-  width: 33vw;
+  width: $main-page-second-col-width;
   height: $main-page-height;
   background-color: darkgray;
   overflow-y: scroll;
@@ -39,7 +40,7 @@ $main-page-first-col-width:65vw;
   font-size: 3vh;
   color:black;
 }
-.main-page-last-quizes-display{
+.main-page-quizes-display{
   width: $main-page-first-col-width;
   height: calc($main-page-height / 2 - 2vw);
   display: flex;
@@ -52,7 +53,7 @@ $main-page-first-col-width:65vw;
   width: 10vw;
   margin: 1vh 1vw;
   display: inline-grid;
-
+  background-color: gainsboro;
 
 }
 .main-page-quiz-name{
@@ -66,4 +67,38 @@ $main-page-first-col-width:65vw;
 .main-page-quiz-info-label{
   margin-bottom: 1vh;
 }
+.main-page-creator-display{
+  width: $main-page-second-col-width;
+  height: calc($main-page-height - 2vw);
+  display: flex;
+  overflow-y: scroll;
+}
+.main-page-creator-profile{
+  width: calc($main-page-second-col-width - 1vw);
+  height: 7vh;
+  margin: 1vh 0.5vw;
+  display: flex;
+ justify-items: left;
+  background-color: gainsboro;
+}
+.main-page-creator-profile-pic-container{
+  height: 6vh;
+  width: 6vh;
+  margin: 0.2vh;
+}
+.main-page-creator-profile-pic{
+  height: inherit;
+  width: inherit;
+}
+.main-page-profile-info-container{
+  align-items: center;
+  margin-top: 0.4vh;
+  margin-left: 3vw;
+}
+.main-page-profile-name{
+  font-weight: bolder;
+  margin-bottom: 0.3vh;
+}
+.main-page-profile-info{
 
+}

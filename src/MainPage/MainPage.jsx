@@ -7,7 +7,7 @@ export default function MainPage({setPage}){
             <div className="main-page-first-batch">
                 <div className="main-page-last-quizes">
                     <div className="main-page-section-name"> Recent quizes</div>
-                    <div className="main-page-last-quizes-display">
+                    <div className="main-page-quizes-display">
                         <div>
                             {generate_quiz_sheet(setPage)}
                             {generate_quiz_sheet(setPage)}
@@ -23,15 +23,49 @@ export default function MainPage({setPage}){
                 </div>
                 <div className="main-page-mentions">
                     <div className="main-page-section-name">Quizes you might like</div>
-                    <div>
-
+                    <div className="main-page-quizes-display">
+                        <div>
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                            {generate_quiz_sheet(setPage)}
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="main-page-users-followed">
                 <div className="main-page-section-name">Followed creators </div>
-                <div>
-
+                <div className="main-page-creator-display">
+                    <div>
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                        {generate_creator_sheet()}
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,6 +85,19 @@ function generate_quiz_sheet(setPage){
                 <div className="main-page-quiz-info">10</div>
             </div>
 
+        </button>
+    )
+}
+function generate_creator_sheet(){
+    return(
+        <button className="main-page-creator-profile">
+            <div className="main-page-creator-profile-pic-container">
+                <img src="public/empty.jpg" className="main-page-creator-profile-pic"/>
+            </div>
+            <div className="main-page-profile-info-container">
+                <div className="main-page-profile-name">Profile name</div>
+                <div className="main-page-profile-info">Number of quizes: 0</div>
+            </div>
         </button>
     )
 }
