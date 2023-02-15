@@ -1,0 +1,81 @@
+$themecolor:rgba(97,4,144,1);
+
+.login-register-container{
+  width: 40vw;
+  height: 60vh;
+  background-color: darkgrey;
+  border-color: $themecolor;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4vh;
+  margin: auto;
+  margin-top: 20vh;
+}
+.login-register-choice-container{
+  margin-top: 2vh;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+.log-inner-container,
+.reg-inner-container{
+  justify-self: center;
+  display: grid;
+  justify-items: center;
+}
+.log-inner-container{
+  margin-top: 15vh;
+}
+.reg-inner-container{
+  margin-top: 8vh;
+}
+.sign-in,
+.sign-up{
+  display: none;
+}
+
+
+.log-reg-choice{
+  text-transform: uppercase;
+  font-size: 2vh;
+  padding-bottom: 0.4vh;
+  margin: 0 1.2vh 0.8vh 0;
+  display: inline-block;
+  border-bottom:2px solid transparent ;
+  cursor: pointer;
+}
+.sign-in:checked+.log-reg-choice,
+.sign-up:checked+.log-reg-choice{
+  color: $themecolor;
+  border-color: $themecolor;
+}
+
+.log-reg-button{
+  width: 8vw;
+  height: 4vh;
+  justify-self: center;
+  background-color: $themecolor;
+  color: azure;
+  border-style: solid;
+  border-color: darkviolet;
+  border-radius: 0.5vh;
+}
+.log-reg-button:hover{
+  background-color: rgba(100,12,196,1);
+}
+.log-reg-button:active{
+  background-color: $themecolor;
+}
+.log-reg-text{
+  height: 3vh;
+  width: 20vw;
+  margin-bottom: 4vh;
+  background-color: lightgrey;
+}
+#checkbox-register{
+  margin-top: -2vh;
+  margin-bottom: 1vh;
+}
+
+
