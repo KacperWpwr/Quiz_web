@@ -1,4 +1,4 @@
-$navbar-height:7vh;
+$navbar-height:8vh;
 
 body{
   background-color: gainsboro;
@@ -7,8 +7,9 @@ body{
 .navbar{
   position: fixed;
   background: rgb(97,4,144);
-  background: linear-gradient(90deg, rgba(97,4,144,1) 0%, rgba(100,12,196,1) 50%, rgba(0,179,255,1) 100%);
+  background: linear-gradient(90deg, rgba(97,4,144,1) 0%, rgba(100,12,196,1) 50%, rgb(0, 128, 255) 100%);
   width: 100vw;
+  display: flex;
   height: $navbar-height;
   top: 0;
   left: 0;
@@ -22,7 +23,59 @@ body{
   font-family: "Baskerville Old Face";
   color: oldlace;
   margin-left: 1vw;
-  margin-right: 40vw;
   cursor: pointer;
 
+}
+.search-bar-container{
+  position:relative;
+  top: 3vh;
+  margin-left: 4vw;
+  height: 3vh;
+  width: 30vw;
+  display: flex;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  overflow: hidden;
+}
+.search-bar{
+  width: 25vw;
+  height: 3vh;
+  background-color: lavenderblush;
+  margin-right:0 ;
+  border-style: none;
+}
+.search-bar:focus{
+  outline: none;
+
+}
+.search-bar-icon{
+  height: 3vh;
+  width: 5vw;
+  background-color: blueviolet;
+  margin-left: 0;
+  border-style: none;
+
+}
+.navbar-button-container{
+  position:relative;
+  top: calc(5 * $navbar-height / 8);
+  width: 30vw;
+  height: calc(3 * $navbar-height / 8);
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-content: revert;
+}
+.navbar-button{
+  margin-right: 1vw;
+  color: whitesmoke;
+  cursor: pointer;
+}
+.navbar-button:hover{
+  text-decoration: underline;
+}
+.navbar-button:active{
+  color: blueviolet;
+  text-decoration: underline;
 }
