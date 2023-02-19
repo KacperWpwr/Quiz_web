@@ -9,6 +9,7 @@ import {Page} from "./PageEnum";
 
 export default function App(){
     const [page,setPage] = useState(Page.MainPage);
+    const [is_logged,setIdLogged] = useState(true)
     const getpage= ()=>{
         switch (page) {
             case Page.MainPage: return <MainPage setPage={setPage}/>
@@ -19,7 +20,7 @@ export default function App(){
     }
     return (
         <div>
-            <Navbar page={page} setPage={setPage}/>
+            <Navbar setPage={setPage} is_logged={is_logged} setIsLogged={setIdLogged}/>
             {getpage()}
         </div>
     )
