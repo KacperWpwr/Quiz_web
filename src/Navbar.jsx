@@ -1,21 +1,26 @@
 import {Page} from "./PageEnum";
+import {Link, Outlet} from "react-router-dom";
 
-export default function Navbar({setPage,is_logged,setIsLogged}){
+export default function Navbar({is_logged,setIsLogged}){
     return (
-        <div className="navbar">
-            <div className="page_name" onClick={()=>{setPage(Page.MainPage)}}>QUIZ</div>
-            <div  className="search-bar-container">
-                <input type="text" className="search-bar"></input>
-                <div className="search-bar-button">Search</div>
+        <>
+            <div className="navbar">
+                <Link to="/" className="page_name" >QUIZ</Link>
+                <div  className="search-bar-container">
+                    <input type="text" className="search-bar"></input>
+                    <div className="search-bar-button">Search</div>
+
+                </div>
+
+                <div className="navbar-button-container">
+                    {!is_logged&&<Link to="/login" className="navbar-button" >Login/Register</Link>}
+                    {is_logged&&<Link to="/quiz-creator" className="navbar-button">Create New Quiz</Link>}
+                    {is_logged&&<Link to="/quiz" className="navbar-button">Account</Link>}
+                    {is_logged&&<Link to="/" className="navbar-button" onClick={()=>{setIsLogged(false)}}>Logout</Link>}
+                </div>
 
             </div>
-
-            <div className="navbar-button-container">
-                {!is_logged&&<div className="navbar-button" onClick={()=>{setPage(Page.LoginPage)}}>Login/Register</div>}
-                {is_logged&&<div className="navbar-button">Create New Quiz</div>}
-                {is_logged&&<div className="navbar-button">Account</div>}
-                {is_logged&&<div className="navbar-button" onClick={()=>{setIsLogged(false);setPage(Page.MainPage)}}>Logout</div>}
-            </div>
-        </div>
+            <Outlet />
+        </>
     )
 }

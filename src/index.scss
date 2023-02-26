@@ -1,8 +1,12 @@
 $navbar-height:8vh;
-$default-color:rgba(97,4,144,1);
+$primary-color:rgba(97,4,144,1);
+$secondary-color:rgba(100,12,196,1);
+$tetriary-color: rgb(0, 128, 255);
+$background-color: gainsboro;
 body{
-  background-color: gainsboro;
+  background-color: $background-color;
   margin: 0;
+  overflow: hidden;
 }
 .navbar{
   position: fixed;
@@ -52,7 +56,7 @@ body{
 .search-bar-button{
   height: 3vh;
   width: 5vw;
-  background-color: $default-color;
+  background-color: $primary-color;
   margin-left: 0;
   border-style: none;
   display: flex;
@@ -65,7 +69,7 @@ body{
   background-color: blueviolet;
 }
 .search-bar-button:active{
-  background-color: $default-color;
+  background-color: $primary-color;
 }
 .navbar-button-container{
   position:relative;

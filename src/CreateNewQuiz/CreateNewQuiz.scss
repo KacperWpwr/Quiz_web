@@ -1,0 +1,426 @@
+@import "src/index";
+
+$add-quest-button-height: 5vh;
+$page-height: calc(100vh - $navbar-height);
+
+//Quiz Editor
+
+.cq-container {
+
+  width: 100vw;
+  height: $page-height;
+
+  position: relative;
+  top: $navbar-height;
+  left: 0;
+
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cq-quiz-creation-menu {
+
+  width: 30vw;
+  height: $page-height;
+
+  border-style: none solid;
+  border-color: gray;
+  border-width: 0 2px;
+}
+
+.cq-question-container {
+
+  width: 30vw;
+  height: $page-height;
+
+  border-style: none solid;
+  border-color: gray;
+  border-width: 0 2px;
+}
+
+.cg-add-quest-button-container {
+  width: 30vw;
+  height: $add-quest-button-height;
+
+  display: flex;
+  justify-content: center;
+
+  border-bottom-color: gray;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+
+.cg-add-question-button {
+  width: 15vw;
+  height: calc($add-quest-button-height - 1vh);
+
+  margin: 0.5vh 0;
+
+  background-color: $primary-color;
+
+  color: whitesmoke;
+
+}
+
+.cg-add-question-button:hover {
+  background-color: blueviolet;
+}
+
+.cg-add-question-button:active {
+  background-color: $primary-color;
+}
+
+
+.cq-question-display-container {
+  width: 30vw;
+  height: calc($page-height - $add-quest-button-height);
+
+  overflow-y: scroll;
+}
+
+.cq-question-form {
+  width: 29vw;
+  height: 5vh;
+
+  margin: 1vh 0.5vw;
+
+  display: flex;
+
+  font-weight: bold;
+
+  border-color: gray;
+  border-style: solid;
+  border-width: 2px;
+
+}
+
+.cq-question-form-question {
+  max-height: 4.8vh;
+  width: 20vw;
+
+  margin-top: 0.2vh;
+  margin-left: 0.1vw;
+
+  overflow-wrap: break-word;
+  overflow: scroll;
+
+}
+
+.cq-question-form-buttons {
+  width: 8.5vw;
+  height: 5vh;
+
+  margin-left: 0.4vw;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cq-question-form-delete {
+  height: 2.5vh;
+  width: 3.5vw;
+
+  text-align: center;
+
+  background-color: firebrick;
+
+  color: whitesmoke;
+
+  border-radius: 0.5vw;
+}
+
+.cq-question-form-delete:hover {
+  color: black;
+  background-color: red;
+}
+
+.cq-question-form-delete:active {
+  background-color: firebrick;
+}
+
+.cq-question-form-edit {
+  height: 2.5vh;
+  width: 3.5vw;
+
+  text-align: center;
+
+  background-color: $secondary-color;
+
+  color: whitesmoke;
+
+  border-radius: 0.5vw;
+}
+
+.cq-question-form-edit:hover {
+  background-color: $tetriary-color;
+
+  color: black;
+}
+
+.cq-question-form-edit:active {
+  background-color: $secondary-color;
+}
+
+.cq-quiz-name-input-container {
+  width: 30vw;
+  height: 5vh;
+
+  margin-top: 20vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cq-quiz-name-input {
+  width: 20vw;
+  height: 3vh;
+
+  font-size: 2vh;
+}
+
+.cq-create-quiz-button-container {
+  width: 30vw;
+  height: 7vh;
+
+  margin-top: 40vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cq-create-quiz-button {
+  width: 15vw;
+  height: 5vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $primary-color;
+
+  color: whitesmoke;
+  font-size: 3vh;
+
+  border-radius: 0.3vh;
+
+  cursor: pointer;
+}
+
+.cq-create-quiz-button:hover {
+  background-color: blueviolet;
+}
+
+.cq-create-quiz-button:active {
+  background-color: $primary-color;
+}
+
+//Question Editor
+
+.cq-question-editor {
+  width: 50vw;
+  height: 60vh;
+
+  position: fixed;
+  top: 20vh;
+  z-index: 3;
+
+  background-color: $background-color;
+
+  border-width: 0.4vh;
+  border-color: gray;
+  border-style: solid;
+}
+
+.cq-question-editor-top-bar {
+  width: 50vw;
+  height: 3vh;
+
+  display: flex;
+  justify-content: flex-end;
+
+  background-color: gray;
+}
+
+.cq-question-editor-close-button {
+  width: 2.6vh;
+  height: 2.6vh;
+
+  margin-bottom: 0.2vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+
+  border-radius: 0.3vh;
+
+  cursor: pointer;
+}
+
+.cq-question-editor-close-button:hover {
+  background: rgb(255, 26, 26);
+}
+
+.cq-question-editor-view-options {
+  width: 50vw;
+  height: 4vh;
+
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: gray;
+}
+
+.qe-edit-view,
+.qe-preview-view {
+  display: none;
+}
+
+.qe-view-mode-choice {
+  margin: 0 1.2vh 0.8vh 0;
+
+  padding-bottom: 0.4vh;
+
+  display: inline-block;
+
+  text-transform: uppercase;
+  font-size: 2vh;
+
+  border-bottom: 2px solid transparent;
+
+  cursor: pointer;
+}
+
+.qe-edit-view:checked + .qe-view-mode-choice,
+.qe-preview-view:checked + .qe-view-mode-choice {
+  border-color: $primary-color;
+
+  color: $primary-color;
+}
+
+.cq-question-editor-content-page {
+  height: 49.2vh;
+  width: 50vw;
+}
+
+.cq-question-editor-save-button {
+  height: 4vh;
+  width: 50vw;
+
+  margin-left: 0;
+
+  text-align: center;
+
+  background-color: $primary-color;
+
+  color: whitesmoke;
+  font-size: 3vh;
+}
+
+.cq-question-editor-save-button:hover {
+  background-color: blueviolet;
+}
+
+.cq-question-editor-save-button:active {
+  background-color: $primary-color;
+}
+
+.qe-question-input-container {
+  width: 50vw;
+  height: 5vh;
+
+  border-bottom-color: gray;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.qe-question-input {
+  width: 25vw;
+  height: 3vh;
+
+  margin: 1vh;
+}
+
+.qe-add-answer-container {
+  width: 50vw;
+  height: 5vh;
+
+  display: flex;
+  justify-content: center;
+}
+
+.qe-add-answer {
+  width: 10vw;
+  height: 3vh;
+
+  margin: 1vh 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $primary-color;
+
+  color: whitesmoke;
+
+  cursor: pointer;
+}
+
+.qe-add-answer:hover {
+  background-color: blueviolet;
+}
+
+.qe-add-answer:active {
+  background-color: $primary-color;
+}
+
+.qe-answer-container {
+  width: 15vw;
+  height: 3vh;
+
+  margin-top: 0.3vh;
+
+  display: flex;
+  align-items: center;
+
+}
+
+.qe-answer-input {
+  height: 2vh;
+  width: 5vw;
+}
+
+.qe-answer-delete {
+  height: 1.8vh;
+  width: 3vw;
+
+  margin: 0.1vh 0 0.1vh 0.3vw;
+
+  text-align: center;
+
+  background-color: firebrick;
+
+  color: whitesmoke;
+
+  border-radius: 0.1vh;
+
+  cursor: pointer;
+}
+
+.qe-answer-delete:hover {
+  background-color: red;
+
+  color: black;
+}
+
+.qe-answer-delete:active {
+  background-color: firebrick;
+}
+

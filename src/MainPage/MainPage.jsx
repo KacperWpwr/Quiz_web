@@ -18,16 +18,16 @@ import {findAllByDisplayValue} from "@testing-library/react";
 
  const profiles =[new Profile_Info("Admin",7),new Profile_Info("User3",3),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4)]
 
-export default function MainPage({setPage}){
+export default function MainPage(){
 
     return(
         <div className="main-page-container">
             <div className="main-page-first-batch">
-                <div className="main-page-last-quizezs">
+                <div className="main-page-last-quizzes">
                     <div className="main-page-section-name"> Recent quizes</div>
                     <div className="main-page-quizzes-display">
                         <div>
-                            {quizes.map(quiz=>{return generate_quiz_sheet(setPage,quiz)})}
+                            {quizes.map(quiz=>{return generate_quiz_sheet(quiz)})}
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ export default function MainPage({setPage}){
                     <div className="main-page-section-name">Quizes you might like</div>
                     <div className="main-page-quizzes-display">
                         <div>
-                            {quizes.map(quiz=>{return generate_quiz_sheet(setPage,quiz)})}
+                            {quizes.map(quiz=>{return generate_quiz_sheet(quiz)})}
                         </div>
                     </div>
                 </div>
@@ -52,9 +52,9 @@ export default function MainPage({setPage}){
     )
 }
 
-function generate_quiz_sheet(setPage,quiz_info){
+function generate_quiz_sheet(quiz_info){
     return(
-        <button className="main-page-quiz-profile" onClick={()=>{setPage(Page.QuizPage)}}>
+        <button className="main-page-quiz-profile" onClick={()=>{window.location="/quiz"}}>
             <div className="main-page-quiz-name">{quiz_info.quiz_name}</div>
             <div>
                 <div className="main-page-quiz-info-label">Author name: </div>
