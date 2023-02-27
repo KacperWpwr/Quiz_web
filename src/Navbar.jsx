@@ -1,5 +1,6 @@
 import {Page} from "./PageEnum";
 import {Link, Outlet} from "react-router-dom";
+import {expireCookie} from "./Api/CookieManagement";
 
 export default function Navbar({is_logged,setIsLogged}){
     return (
@@ -16,7 +17,7 @@ export default function Navbar({is_logged,setIsLogged}){
                     {!is_logged&&<Link to="/login" className="navbar-button" >Login/Register</Link>}
                     {is_logged&&<Link to="/quiz-creator" className="navbar-button">Create New Quiz</Link>}
                     {is_logged&&<Link to="/quiz" className="navbar-button">Account</Link>}
-                    {is_logged&&<Link to="/" className="navbar-button" onClick={()=>{setIsLogged(false)}}>Logout</Link>}
+                    {is_logged&&<Link to="/" className="navbar-button" onClick={()=>{setIsLogged(false);expireCookie("credentials")}}>Logout</Link>}
                 </div>
 
             </div>
