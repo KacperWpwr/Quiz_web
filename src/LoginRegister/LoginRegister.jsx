@@ -15,7 +15,7 @@ export default function LoginRegister({setIsLogged}){
                 <input id="login" type="radio" name="log-reg-input" className="sign-in" onClick={()=>setIsLogin(true)}/>
                 <label  htmlFor="login" className="log-reg-choice">Sign in</label>
             </div>
-            {is_login? getLoginForm(setlogged):getRegisterForm(setlogged)}
+            {is_login? getLoginForm(setIsLogged):getRegisterForm(setIsLogged)}
         </div>
     )
 }
@@ -33,7 +33,15 @@ function getLoginForm(setLogged){
 function loginFunction(setLogged){
     const login = document.getElementById("login-login-input").value
     const password = document.getElementById("login-password-input").value
-    Login(login,password,setLogged)
+    const login_func= async ()=>{
+        const res = await Login(login,password)
+        if(res){
+            setLogged(true)
+            document.location.pathname="/"
+        }
+    }
+    login_func()
+
 }
 function getRegisterForm(setLogged){
     return(
@@ -51,9 +59,18 @@ function getRegisterForm(setLogged){
     )
 }
 function registerFunction(setLogged){
+
     const login = document.getElementById("register-login-input").value
     const password = document.getElementById("register-password-input").value
     const match_password = document.getElementById("register-match-password-input").value
     const email = document.getElementById("register-email-input").value
-    Register(login,password,match_password,email,setLogged)
+    const register_func = async ()=>{
+        const res = await Register(login,password,match_password,email,setLogged)
+        if(res.value){
+            setLogged(true)
+            document.location.pathname="/"
+        }
+    }
+    register_func()
+
 }

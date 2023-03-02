@@ -13,7 +13,15 @@ import {checkLogin} from "./Api/LoginCheck";
 export default function App(){
     const [page,setPage] = useState(Page.CreateQuizPage);
     const [is_logged,setIsLogged] = useState(false)
-    useEffect(()=>{checkLogin(setIsLogged)},[])
+    useEffect(()=>{
+        const log_check= async()=>{
+            const res = await checkLogin()
+            console.log(res)
+            setIsLogged(res)
+        }
+        log_check()
+
+    },[])
     return (
 
         <BrowserRouter>

@@ -3,14 +3,15 @@ import {createCookie} from "./CookieManagement";
 
 const login_path="/user/auth/login"
 const register_path="/user/auth/register"
-export  const  Login = async (login, password,setLogged)  =>{
+export  const  Login = async (login, password)  =>{
     const credentials={
         login:login,
         password:password
     }
     const path=api_path.api_path+login_path
     console.log("path: "+path)
-    await fetch(path,{
+    return await fetch(path,{
+        mode:"cors",
         method: "POST",
         headers: {
             'Content-Type': 'application/json; charset=utf-8'
@@ -25,16 +26,16 @@ export  const  Login = async (login, password,setLogged)  =>{
         }
     }).then(data=>{
         if(data!==false){
-            setLogged()
             const date = new Date();
             date.setDate(new Date()+ 24*60*60*1000)
             console.log(credentials)
             createCookie("credentials",data.token,date,"/")
-            document.location.pathname="/"
+            return true;
         }
+        return false;
     })
 }
-export const Register = async (login,password,match_password,email,setLogged)=>{
+export const Register = async (login,password,match_password,email)=>{
     const register_request = {
         login:login,
         password:password,
@@ -43,29 +44,33 @@ export const Register = async (login,password,match_password,email,setLogged)=>{
     }
     console.log(register_request)
     const path = api_path.api_path+register_path
-    await fetch(path,{
+    return await fetch(path,{
+        mode:"cors",
         method:'POST',
         headers:{
-            'Content-Type': 'application/json; charset=utf-8'
+            "Content-Type": "application/json; charset=utf-8"
         },
         body: JSON.stringify(register_request)
     }).then((response)=>{
         if(response.ok){
+            console.log(response)
             return response.json()
+
         }else{
             return false
         }
     }).then((data)=>{
         if(data!==false) {
-            setLogged()
             const date = new Date();
             date.setDate(new Date()+ 24*60*60*1000)
 
             createCookie("credentials",data.token,date,"/")
             document.location.pathname="/"
+            return true;
 
         }else{
             console.log("Failure")
+            return false;
         }
     })
 }
