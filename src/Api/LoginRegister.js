@@ -18,21 +18,7 @@ export  const  Login = async (login, password)  =>{
         },
         body: JSON.stringify(credentials)
     }).then(response=>{
-        if(response.ok){
-            return response.json()
-        }else{
-            console.log(response)
-            return false;
-        }
-    }).then(data=>{
-        if(data!==false){
-            const date = new Date();
-            date.setDate(new Date()+ 24*60*60*1000)
-            console.log(credentials)
-            createCookie("credentials",{token:data.token,login:login},date,"/")
-            return true;
-        }
-        return false;
+        return response
     })
 }
 export const Register = async (login,password,match_password,email)=>{
@@ -52,25 +38,8 @@ export const Register = async (login,password,match_password,email)=>{
         },
         body: JSON.stringify(register_request)
     }).then((response)=>{
-        if(response.ok){
-            console.log(response)
-            return response.json()
+        return response
 
-        }else{
-            return false
-        }
-    }).then((data)=>{
-        if(data!==false) {
-            const date = new Date();
-            date.setDate(new Date()+ 24*60*60*1000)
 
-            createCookie("credentials",{token:data.token,login:login},date,"/")
-            document.location.pathname="/"
-            return true;
-
-        }else{
-            console.log("Failure")
-            return false;
-        }
     })
 }

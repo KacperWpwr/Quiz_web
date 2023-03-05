@@ -15,31 +15,35 @@ class Result{
 
 
 export default function Navbar({is_logged,setIsLogged}){
-    const [search_results,setSearchResults] = useState([new Result("Quiz 1" ,1),new Result("Quiz 2",2)])
+    const [search_results,setSearchResults] = useState([])
+
+    const SearchBarOnInput = async (text)=>{
+
+    }
     const getQuiz= async (id)=>{
         const result = await getQuizById(id)
         const body = await result.json()
         console.log(body)
         createCookie("quiz",body,null,"/quiz")
-        //document.location.pathname="/quiz"
+        document.location.pathname="/quiz"
     }
     return (
-        <div className="visibl-eoverflow">
+        <>
             <div className="navbar">
                 <Link to="/" className="page_name" >QUIZ</Link>
                 <div className="search-container">
                     <div  className="search-bar-container">
-                        <input type="text" className="search-bar"></input>
+                        <input type="text" className="search-bar" onChange={(event)=>{SearchBarOnInput(event.target.value)}}></input>
                         <div className="search-bar-button">Search</div>
                     </div>
                     <div className="search-result-container">
                         {search_results.map(result=>{
-                            return(
-                                <div className="search-result" onClick={()=>{ getQuiz(result.id)}}>
-                                    {result.text}
-                                </div>
-                            )
-                        })}
+                        return(
+                        <div className="search-result" onClick={()=>{ getQuiz(result.id)}}>
+                    {result.text}
+                        </div>
+                        )
+                    })}
                     </div>
                 </div>
 
@@ -52,7 +56,7 @@ export default function Navbar({is_logged,setIsLogged}){
 
             </div>
             <Outlet />
-        </div>
+        </>
     )
 }
 

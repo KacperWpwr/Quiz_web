@@ -70,11 +70,24 @@ $themecolor:rgba(97,4,144,1);
 .log-reg-text{
   height: 3vh;
   width: 20vw;
-  margin-bottom: 4vh;
+  margin-bottom: 0.5vh;
   background-color: lightgrey;
 }
+.log-reg-text.wrong{
+  border-color: red;
+  border-style: solid;
+}
+.log-reg-text-container{
+  margin-bottom: 2vh;
+  height: 5vh;
+}
+
+.log-reg-error-feedback{
+  font-size: 1.5vh;
+  color: red;
+}
+
 #checkbox-register{
-  margin-top: -2vh;
   margin-bottom: 1vh;
 }
 
