@@ -8,16 +8,25 @@ body{
   margin: 0;
   overflow: hidden;
 }
+.visible-overflow{
+  overflow-y: visible;
+}
 .navbar{
-  position: fixed;
-  background: rgb(97,4,144);
-  background: linear-gradient(90deg, rgba(97,4,144,1) 0%, rgba(100,12,196,1) 50%, rgb(0, 128, 255) 100%);
+
+
   width: 100vw;
-  display: flex;
   height: $navbar-height;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
+
+  background: rgb(97,4,144);
+  background: linear-gradient(90deg, rgba(97,4,144,1) 0%, rgba(100,12,196,1) 50%, rgb(0, 128, 255) 100%);
+
+  display: flex;
   justify-items: revert;
+  overflow-y: visible;
 
 }
 .page_name{
@@ -30,10 +39,17 @@ body{
   cursor: pointer;
 
 }
-.search-bar-container{
+.search-container{
   position:relative;
   top: 3vh;
   margin-left: 4vw;
+  height: 3vh;
+  width: 30vw;
+  overflow: visible;
+  display: flow;
+
+}
+.search-bar-container{
   height: 3vh;
   width: 30vw;
   display: flex;
@@ -71,6 +87,33 @@ body{
 .search-bar-button:active{
   background-color: $primary-color;
 }
+.search-result-container{
+  width: 25vw;
+  background: whitesmoke;
+  position: relative;
+  margin-left: 1.5px;
+  z-index: 5;
+  min-height: 0;
+  max-height: 21vh;
+  overflow-y: scroll;
+  border-width: 0.5px;
+  border-top-width: 0;
+  border-color: black;
+  border-style: solid;
+}
+.search-result{
+  width: 25vw;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  background: whitesmoke;
+  font-size: 2vh;
+  cursor: pointer;
+}
+.search-result:hover{
+  background: lightgrey;
+}
+
 .navbar-button-container{
   position:relative;
   top: calc(5 * $navbar-height / 8);

@@ -16,7 +16,6 @@ export default function App(){
     useEffect(()=>{
         const log_check= async()=>{
             const res = await checkLogin()
-            console.log(res)
             setIsLogged(res)
         }
         log_check()
@@ -27,7 +26,7 @@ export default function App(){
         <BrowserRouter>
 
             <Routes>
-                <Route path="/" element={<Navbar is_logged={is_logged} setIsLogged={setIsLogged}/>}>
+                <Route  path="/" element={<Navbar is_logged={is_logged} setIsLogged={setIsLogged}/>}>
                     <Route index={true} element={<MainPage/>}/>
                     <Route path="login" element={<LoginRegister setIsLogged={setIsLogged}/>}/>
                     <Route path="quiz" element={<Quiz setPage={setPage}/>}/>

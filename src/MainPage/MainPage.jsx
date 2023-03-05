@@ -1,5 +1,7 @@
 import {Page} from "../PageEnum";
 import {findAllByDisplayValue} from "@testing-library/react";
+import {useEffect, useState} from "react";
+import {getFollowedCreators, getProposedQuizes, getRecentQuizes} from "../Api/MainPage";
  class Quiz_Information{
     constructor(quiz_name,author_name,question_number) {
         this.quiz_name=quiz_name
@@ -18,7 +20,22 @@ import {findAllByDisplayValue} from "@testing-library/react";
 
  const profiles =[new Profile_Info("Admin",7),new Profile_Info("User3",3),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4)]
 
+
 export default function MainPage(){
+    const  [recent_quizzes, setRecentQuizzes] = useState([])
+    const  [proposed_quizzes, setProposedQuizzes] = useState([])
+    const  [followed_creators, setFollowedCreators] = useState([])
+    useEffect(() => {
+        const fetch_info = async ()=>{
+            const rec_quizzes = await getRecentQuizes()
+            setRecentQuizzes(rec_quizzes)
+            const prop_quizzes= await getProposedQuizes()
+            setProposedQuizzes(prop_quizzes)
+            const foll_creators = await getFollowedCreators()
+            setFollowedCreators(foll_creators)
+        }
+        fetch_info()
+    }, [])
 
     return(
         <div className="main-page-container">
@@ -26,26 +43,22 @@ export default function MainPage(){
                 <div className="main-page-last-quizzes">
                     <div className="main-page-section-name"> Recent quizes</div>
                     <div className="main-page-quizzes-display">
-                        <div>
-                            {quizes.map(quiz=>{return generate_quiz_sheet(quiz)})}
-                        </div>
+                        {recent_quizzes.length===0 ? <div className="main-page-quizzes-nothing">Nothing to show</div> : <div>{recent_quizzes.map(quiz=>{return generate_quiz_sheet(quiz)})}</div>}
                     </div>
                 </div>
                 <div className="main-page-mentions">
                     <div className="main-page-section-name">Quizes you might like</div>
                     <div className="main-page-quizzes-display">
                         <div>
-                            {quizes.map(quiz=>{return generate_quiz_sheet(quiz)})}
+                            {proposed_quizzes.length===0 ? <div className="main-page-quizzes-nothing">Nothing to show</div>:<div>{proposed_quizzes.map(quiz=>{return generate_quiz_sheet(quiz)})}</div>}
                         </div>
                     </div>
                 </div>
             </div>
             <div className="main-page-users-followed">
-                <div className="main-page-section-name">Followed creators </div>
+                <div className="main-page-users-followed-section-name">Followed creators </div>
                 <div className="main-page-creator-display">
-                    <div>
-                        {profiles.map(profile=>{return generate_creator_sheet(profile)})}
-                    </div>
+                    {followed_creators.length===0 ? <div className="main-page-users-followed-nothing">Nothing to show</div> : <div>{followed_creators.map(profile=>{return generate_creator_sheet(profile)})}</div>}
                 </div>
             </div>
         </div>

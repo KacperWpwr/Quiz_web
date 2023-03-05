@@ -8,7 +8,7 @@ export  const  Login = async (login, password)  =>{
         login:login,
         password:password
     }
-    const path=api_path.api_path+login_path
+    const path=api_path+login_path
     console.log("path: "+path)
     return await fetch(path,{
         mode:"cors",
@@ -29,7 +29,7 @@ export  const  Login = async (login, password)  =>{
             const date = new Date();
             date.setDate(new Date()+ 24*60*60*1000)
             console.log(credentials)
-            createCookie("credentials",data.token,date,"/")
+            createCookie("credentials",{token:data.token,login:login},date,"/")
             return true;
         }
         return false;
@@ -43,7 +43,7 @@ export const Register = async (login,password,match_password,email)=>{
         email:email
     }
     console.log(register_request)
-    const path = api_path.api_path+register_path
+    const path = api_path+register_path
     return await fetch(path,{
         mode:"cors",
         method:'POST',
@@ -64,7 +64,7 @@ export const Register = async (login,password,match_password,email)=>{
             const date = new Date();
             date.setDate(new Date()+ 24*60*60*1000)
 
-            createCookie("credentials",data.token,date,"/")
+            createCookie("credentials",{token:data.token,login:login},date,"/")
             document.location.pathname="/"
             return true;
 

@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import {findAllByDisplayValue} from "@testing-library/react";
+import {CreateQuiz} from "../Api/CreateQuiz";
+import {createCookie} from "../Api/CookieManagement";
 
 class Question{
     constructor(id,question,answers) {
@@ -9,10 +11,10 @@ class Question{
     }
 }
 class Answer{
-    constructor(id,is_correct,text) {
+    constructor(id,is_correct,answer_txt) {
         this.id=id
         this.is_correct=is_correct
-        this.text=text
+        this.text=answer_txt
 
     }
 
@@ -23,6 +25,19 @@ export default function CreateNewQuiz(){
     const [question_id,setQuestionId]=useState(1)
     const [editor_active,setEditorActive]=useState(false)
     const [active_question_id, setActiveQuestionId] = useState(0)
+    const create = async ()=>{
+        const result = await CreateQuiz(quiz_name,QuestionsToDTO(questions))
+        console.log(result)
+        if(!result.ok){
+            console.log("Error")
+            return;
+        }
+        const new_quiz= await result.json()
+        const date = new Date();
+        date.setDate(new Date()+ 24*60*60*1000)
+        createCookie("quiz",new_quiz,date,"/quiz")
+        document.location.pathname="/quiz"
+    }
 
     const close_editor = ()=>{
         setEditorActive(false)
@@ -64,7 +79,7 @@ export default function CreateNewQuiz(){
                     <input type="text" value={quiz_name} placeholder="Quiz Name" className="cq-quiz-name-input" onChange={(event)=>{setQuizName(event.target.value)}}/>
                 </div>
                 <div className="cq-create-quiz-button-container">
-                    <div className="cq-create-quiz-button">Create Quiz</div>
+                    <div className="cq-create-quiz-button" onClick={()=>create()}>Create Quiz</div>
                 </div>
 
 
@@ -249,4 +264,25 @@ function PreviewForm({props}){
             </div>
         </div>
     )
+}
+function QuestionsToDTO(questions){
+    const questions_dtos=[]
+    questions.forEach(question=>{
+        const answers_dtos=[]
+        question.answers.forEach(answer=>{
+            const answer_dto = {
+                is_correct:answer.is_correct,
+                answer_text:answer.text
+            }
+            console.log(JSON.stringify(answer_dto))
+            answers_dtos.push(answer_dto)
+        })
+        const question_dto={
+            answers:answers_dtos,
+            question_text:question.question_text
+        }
+        questions_dtos.push(question_dto)
+    })
+    console.log(JSON.stringify(questions_dtos))
+    return questions_dtos
 }

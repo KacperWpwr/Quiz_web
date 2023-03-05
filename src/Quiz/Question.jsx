@@ -9,9 +9,10 @@ export default function Question({question_info,props}) {
             <ul className="unstyled_list">
                 { question_info.answers.map(answer=>
                 <li key={answer.number} >
-                    <div className={getMarker(props.is_checked,answer.number===props.button_checked,answer.is_correct)}>
+                    <div className="choice">
                         <input checked={props.button_checked===answer.number} disabled={props.is_checked} onClick={()=>{check(props,answer.is_correct);props.setButtonChecked(answer.number)}} className="question_choice" type="radio" />
-                        {answer.text}
+                        {answer.answer_txt}
+                        {getMarker(props.is_checked,props.button_checked===answer.number,answer.is_correct)}
                     </div>
                 </li>
                 )}
@@ -20,15 +21,20 @@ export default function Question({question_info,props}) {
     )
 }
 function getMarker(is_checked,is_key_checked,is_correct){
-    let returning = 'choice'
-    if(is_key_checked&&!is_correct){
-            returning +=' incorrect'
 
+    if(is_key_checked&&!is_correct){
+        return (
+            <div className="quiz-crossmark">X</div>
+        )
     }
     if(is_checked&&is_correct){
-        returning+=' correct'
+        return (
+            <span className="quiz-checkmark">&#10003;</span>
+        )
     }
-    return returning;
+    return (
+        <div></div>
+    )
 
 
 

@@ -60,7 +60,10 @@ $buttoncolor:rgba(97,4,144,1);
   margin-left: 4vw;
 }
 .choice{
+  display: flex;
   color: black;
+  height: 2vh;
+  margin-bottom: 0.3vh;
 }
 .choice.correct{
   color: darkgreen;
@@ -109,3 +112,35 @@ $buttoncolor:rgba(97,4,144,1);
   text-align: center;
   font-size: 2vh;
 }
+.quiz-checkmark{
+  width: 2vh;
+  height: 2vh;
+  margin-left: 0.5vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+
+  overflow: clip;
+  background-color: green;
+  color: whitesmoke;
+
+}
+.quiz-crossmark{
+  width: 2vh;
+  height: 2vh;
+  margin-left: 0.5vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+
+  overflow: clip;
+  background-color: firebrick;
+  color: whitesmoke;
+}
+

@@ -3,7 +3,8 @@ $main-page-height:calc(100vh - $navbar-height);
 $main-page-first-col-width:65vw;
 $main-page-second-col-width: 33vw;
 .main-page-container{
-  position: fixed;
+  position: relative;
+  z-index: 3;
   display: flex;
   top: $navbar-height;
   left:0;
@@ -13,6 +14,8 @@ $main-page-second-col-width: 33vw;
 .main-page-first-batch{
   height: $main-page-height;
   width: $main-page-first-col-width;
+  position: relative;
+  z-index: 3;
   margin-right: 2vw;
 
 }
@@ -26,12 +29,35 @@ $main-page-second-col-width: 33vw;
   height: calc($main-page-height / 2 );
   background-color: darkgray;
 }
+.main-page-quizzes-nothing{
+  width:$main-page-first-col-width;
+  height: calc($main-page-height / 2 );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vh;
+}
 
 .main-page-users-followed{
   width: $main-page-second-col-width;
   height: $main-page-height;
   background-color: darkgray;
   overflow-y: scroll;
+}
+.main-page-users-followed-nothing{
+  width: $main-page-second-col-width;
+  height: $main-page-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vh;
+}
+.main-page-users-followed-section-name{
+  width:$main-page-second-col-width;
+  height: 2vw;
+  background-color: gainsboro;
+  font-size: 3vh;
+  color:black;
 }
 .main-page-section-name{
   width:$main-page-first-col-width;
