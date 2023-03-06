@@ -6,3 +6,9 @@ export async function getQuizById(id){
     console.log(result)
     return result
 }
+export async function quizSearchStrict(name){
+    const path = api_path+"/quiz/search/strict/"+name
+    const result = await fetch(path)
+    console.log(result)
+    return result
+}

@@ -3,14 +3,9 @@ import {Link, Outlet} from "react-router-dom";
 import {createCookie, expireCookie} from "./Api/CookieManagement";
 import {useState} from "react";
 import {findAllByDisplayValue} from "@testing-library/react";
-import {getQuizById} from "./Api/Quiz";
+import {getQuizById, quizSearchStrict} from "./Api/Quiz";
 
-class Result{
-    constructor(text,quiz_id) {
-        this.text=text
-        this.id=quiz_id
-    }
-}
+
 
 
 
@@ -18,7 +13,14 @@ export default function Navbar({is_logged,setIsLogged}){
     const [search_results,setSearchResults] = useState([])
 
     const SearchBarOnInput = async (text)=>{
-
+        setSearchResults([])
+        if(text!==""){
+            const result = await quizSearchStrict(text);
+            if(result.ok){
+                const body=await result.json();
+                setSearchResults(body)
+            }
+        }
     }
     const getQuiz= async (id)=>{
         const result = await getQuizById(id)
@@ -40,7 +42,7 @@ export default function Navbar({is_logged,setIsLogged}){
                         {search_results.map(result=>{
                         return(
                         <div className="search-result" onClick={()=>{ getQuiz(result.id)}}>
-                    {result.text}
+                    {result.quiz_name}
                         </div>
                         )
                     })}

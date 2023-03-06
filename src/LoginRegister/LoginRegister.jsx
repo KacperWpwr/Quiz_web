@@ -1,13 +1,12 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Login, Register} from "../Api/LoginRegister";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 export default function LoginRegister({setIsLogged}){
     const[is_login,setIsLogin] = useState(false)
-    const setlogged = ()=>{
-        console.log("user is logged")
-        setIsLogged(true)
-    }
+    useEffect(()=>{
+        document.title=is_login? "Sign in":"Sign up"
+    },[is_login])
     return(
         <div className="login-register-container">
             <div className="login-register-choice-container">

@@ -25,6 +25,11 @@ export default function CreateNewQuiz(){
     const [question_id,setQuestionId]=useState(1)
     const [editor_active,setEditorActive]=useState(false)
     const [active_question_id, setActiveQuestionId] = useState(0)
+
+    useEffect(()=>{
+        document.title="Create Quiz"
+    },[])
+
     const create = async ()=>{
         const result = await CreateQuiz(quiz_name,QuestionsToDTO(questions))
         console.log(result)

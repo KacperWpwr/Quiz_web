@@ -59,6 +59,7 @@ export default function Quiz(){
         const this_quiz = QuizDTOResolve(quiz)
         setQuizName(this_quiz.name)
         setQuestions(this_quiz.questions)
+        document.title=quiz_name
 
        expireCookie("quiz")
     }, []);
@@ -83,7 +84,7 @@ export default function Quiz(){
     const renderQuizStart=(
         <div className="quiz_container">
             <div className="quiz_start_over_container">
-                <div className="quiz_name">QUIZ </div>
+                <div className="quiz_name">{quiz_name} </div>
                 <div className="quiz_button_container">
                     <button className="quiz_button" onClick={()=>setIsStarted(true)}>Start quiz</button>
                 </div>

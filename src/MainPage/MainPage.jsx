@@ -26,6 +26,7 @@ export default function MainPage(){
     const  [proposed_quizzes, setProposedQuizzes] = useState([])
     const  [followed_creators, setFollowedCreators] = useState([])
     useEffect(() => {
+        document.title="Home"
         const fetch_info = async ()=>{
             const rec_quizzes = await getRecentQuizes()
             setRecentQuizzes(rec_quizzes)
