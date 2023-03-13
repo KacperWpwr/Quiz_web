@@ -1,6 +1,6 @@
-import {Register} from "../Api/LoginRegister";
+import {Register} from "../../Api/LoginRegister";
 import {useState} from "react";
-import {createCookie} from "../Api/CookieManagement";
+import {createCookie} from "../../Api/CookieManagement";
 
 export default function RegisterForm({setLogged}){
     const [login_correct,setLoginCorrect]= useState(true)

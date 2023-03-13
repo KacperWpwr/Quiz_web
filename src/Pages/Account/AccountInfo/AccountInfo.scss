@@ -1,0 +1,153 @@
+@import "../Account";
+@import "../../../index";
+
+
+
+.account-info-label{
+  width: calc($account-form-width - 3vw);
+  height: 6vh;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 2vh;
+
+  border-bottom-width: 2px;
+  border-bottom-color: dimgray;
+  border-bottom-style: solid;
+
+}
+.account-info-text-field{
+  height: 3vh;
+  width: 20vw;
+
+  font-size: 2vh;
+}
+
+.account-info-label-description{
+  width: auto;
+
+  margin-left: 1vw;
+  margin-right: 0.5vw;
+
+  font-weight: bold;
+}
+.account-info-label-context{
+
+}
+.account-info-account-description-container{
+  width: calc($account-form-width - 3vw);
+  height: 18vh;
+
+  font-size: 2vh;
+
+  border-bottom-width: 2px;
+  border-bottom-color: dimgray;
+  border-bottom-style: solid;
+}
+.account-info-account-description{
+  width: calc($account-form-width - 7vw);
+  height: 15vh;
+
+  margin-left: 2vw;
+
+
+
+
+}
+.account-info-description-textarea{
+  width: calc($account-form-width - 7vw);
+  height: 13vh;
+
+  margin-left: 2vw;
+
+  font-size: 1.5vh;
+
+  resize: none;
+}
+.account-info-edit-button-form{
+  width: calc($account-form-width - 3vw);
+  height: 6vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom-width: 2px;
+  border-bottom-color: dimgray;
+  border-bottom-style: solid;
+}
+
+.account-info-edit{
+  width: 6vw;
+  height: 4vh;
+
+  background-color: $primary-color;
+
+  color: lightgray;
+
+  border-radius: 3vh;
+  border-style: none;
+
+  cursor: pointer;
+}
+.account-info-edit:hover{
+  background-color: blueviolet;
+
+  color: black;
+}
+.account-info-edit:active{
+  background-color: $primary-color;
+
+  color: black;
+}
+
+.account-info-save{
+  width: 6vw;
+  height: 4vh;
+
+  background-color: $secondary-color;
+
+  color: lightgray;
+
+  border-radius: 3vh;
+  border-style: none;
+
+  cursor: pointer;
+}
+.account-info-save:hover{
+  background-color: mediumslateblue;
+
+  color: black;
+}
+.account-info-save:active{
+  background-color: $secondary-color;
+
+  color: black;
+}
+
+.account-info-cancel{
+  width: 6vw;
+  height: 4vh;
+
+  margin-left: 3vw;
+
+  background-color: firebrick;
+
+  color: lightgray;
+
+  border-radius: 3vh;
+  border-style: none;
+
+  cursor: pointer;
+}
+.account-info-cancel:hover{
+  background-color: red;
+
+  color: black;
+}
+.account-info-cancel:active{
+  background-color: firebrick;
+
+  color: black;
+}

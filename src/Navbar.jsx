@@ -52,7 +52,7 @@ export default function Navbar({is_logged,setIsLogged}){
                 <div className="navbar-button-container">
                     {!is_logged&&<Link  to="/login" className="navbar-button" >Login/Register</Link>}
                     {is_logged&&<Link  to="/quiz-creator" className="navbar-button">Create New Quiz</Link>}
-                    {is_logged&&<Link  to="/quiz" className="navbar-button">Account</Link>}
+                    {is_logged&&<Link  to="/account" className="navbar-button">Account</Link>}
                     {is_logged&&<Link  to="/" className="navbar-button" onClick={()=>{setIsLogged(false);expireCookie("credentials")}}>Logout</Link>}
                 </div>
 

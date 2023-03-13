@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {findAllByDisplayValue} from "@testing-library/react";
-import {CreateQuiz} from "../Api/CreateQuiz";
-import {createCookie} from "../Api/CookieManagement";
+import {CreateQuiz} from "../../Api/CreateQuiz";
+import {createCookie} from "../../Api/CookieManagement";
 
 class Question{
     constructor(id,question,answers) {

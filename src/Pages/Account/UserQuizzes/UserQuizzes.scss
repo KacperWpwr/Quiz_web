@@ -1,0 +1,116 @@
+@import "../Account";
+@import "../../../index";
+
+.user-quizzes-label-container{
+  width: calc($account-form-width - 3vw);
+  height: 5vh;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom-color: dimgray;
+  border-bottom-style:solid ;
+  border-bottom-width: 2px;
+
+  font-size: 2.5vh;
+  font-weight: bold;
+}
+.user-quizzes-label{
+  margin-left: 1vw;
+}
+
+.user-quizzes-quiz-display-list{
+  height: 61vh;
+  width: calc($account-form-width - 3vw);
+
+
+  display: block;
+  justify-content: center;
+
+}
+.user-quizzes-quiz-display{
+  height: 6vh;
+  width: calc($account-form-width - 5vw);
+
+  display: flex;
+  align-items: center;
+
+  margin-top: 0.6vh;
+
+  border-style: solid;
+  border-color:dimgray;
+  border-width: 1.5px;
+
+  cursor: pointer;
+
+}
+.user-quizzes-quiz-display:hover{
+  background-color: lightgray;
+}
+.user-quizzes-quiz-display-name{
+  margin-left: 0.5vw;
+
+  font-size: 2vh;
+  font-weight: bold;
+}
+.user-quizzes-quiz-display-rating-display{
+  height: 4vh;
+
+  display: grid;
+  align-items: center;
+
+  margin-left: 0.5vw;
+
+}
+.user-quizzes-quiz-display-times-taken{
+
+}
+.user-quizzes-quiz-display-rating{
+
+}
+.user-quizzes-footer{
+  width: calc($account-form-width - 5vw);
+  height: 4vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-quizzes-footer-button{
+  height: 2vh;
+  width: 2vh;
+
+  margin: 0 0.2vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: darkgray;
+
+  font-size: 2vh;
+  font-weight: bold;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+
+  cursor: pointer;
+}
+.user-quizzes-footer-button:hover{
+  background-color: lightgray;
+}
+.user-quizzes-footer-button.current{
+  background-color: mediumslateblue;
+
+  color: lightgray;
+
+  border-color: blueviolet;
+
+  cursor: default;
+}
+.user-quizzes-footer-button.disabled{
+  background-color: darkgray;
+
+  cursor: default;
+}

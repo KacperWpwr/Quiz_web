@@ -1,7 +1,7 @@
 import Question from "./Question";
 import {useEffect, useState} from "react";
-import {Page} from "../PageEnum";
-import {checkCookie, expireCookie, getCookie} from "../Api/CookieManagement";
+import {Page} from "../../PageEnum";
+import {checkCookie, expireCookie, getCookie} from "../../Api/CookieManagement";
 
 class Answer {
     constructor(is_correct, text,number) {

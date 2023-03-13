@@ -1,0 +1,79 @@
+$account-form-height:70vh;
+$account-form-width: 40vw;
+
+.account-display-container{
+  height: $account-form-height;
+  width: $account-form-width;
+
+  display: flex;
+
+  position: fixed;
+  top:15vh;
+  left: 30vw;
+
+
+
+  background-color: darkgray;
+
+}
+.account-choice-list-container{
+
+  height: $account-form-height;
+  width: 3vw;
+  background-color: dimgray;
+  display: table;
+}
+.account-choice-container{
+  width: 3vw;
+  height: 6vh;
+
+  overflow-y: visible;
+
+  border-bottom-color: lightgray;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+.account-choice{
+  width: 3vw;
+  height: 6vh;
+  font-size: 0;
+
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+
+  color: lightgray;
+  background-color: dimgray;
+
+  cursor: pointer;
+
+
+}
+.account-choice:hover{
+  width: 12vw;
+  font-size: 1.5vh;
+  background-color: gray;
+}
+.account-choice-name{
+  height: 3vw;
+  width: auto;
+  font-size: inherit;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.account-choice:hover+.account-choice-name{
+  font-size: 1vh;
+}
+.account-choice-icon{
+  width: 3vw;
+  height: 3vw;
+  font-size: 3vh;
+}
+.account-content-display-container{
+  width: calc($account-form-width - 3vw);
+  height: $account-form-height;
+}

@@ -1,7 +1,7 @@
-import {Page} from "../PageEnum";
+import {Page} from "../../PageEnum";
 import {findAllByDisplayValue} from "@testing-library/react";
 import {useEffect, useState} from "react";
-import {getFollowedCreators, getProposedQuizes, getRecentQuizes} from "../Api/MainPage";
+import {getFollowedCreators, getProposedQuizes, getRecentQuizes} from "../../Api/MainPage";
  class Quiz_Information{
     constructor(quiz_name,author_name,question_number) {
         this.quiz_name=quiz_name
