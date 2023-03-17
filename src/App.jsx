@@ -8,6 +8,7 @@ import {Page} from "./PageEnum";
 import CreateNewQuiz from "./Pages/CreateNewQuiz/CreateNewQuiz";
 import {checkLogin} from "./Api/LoginCheck";
 import Account from "./Pages/Account/Account";
+import SearchDisplay from "./Pages/SearchDisplay/SearchDisplay";
 
 
 
@@ -25,7 +26,6 @@ export default function App(){
     return (
 
         <BrowserRouter>
-
             <Routes>
                 <Route  path="/" element={<Navbar is_logged={is_logged} setIsLogged={setIsLogged}/>}>
                     <Route index={true} element={<MainPage/>}/>
@@ -33,6 +33,7 @@ export default function App(){
                     <Route path="quiz" element={<Quiz setPage={setPage}/>}/>
                     <Route path="quiz-creator" element={<CreateNewQuiz/>}/>
                     <Route path="account" element={<Account/>} />
+                    <Route path="search" element={<SearchDisplay/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

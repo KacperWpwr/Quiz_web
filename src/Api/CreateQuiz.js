@@ -8,7 +8,6 @@ export async function CreateQuiz(quiz_name,questions){
         quiz_name: quiz_name,
         questions: questions
     }
-    console.log(credentials.token)
     const path = api_path+"/quiz/create"
     const result = await fetch(path,{
         credentials: "omit",

@@ -10,6 +10,8 @@ import "./Pages/Account/Account.scss"
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './Pages/Account/AccountInfo/AccountInfo.scss'
 import './Pages/Account/UserQuizzes/UserQuizzes.scss'
+import './Pages/Account/QuizHistory/QuizHistory.scss'
+import './Pages/SearchDisplay/SearchDisplay.scss'
 
 
 

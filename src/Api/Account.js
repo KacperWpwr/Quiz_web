@@ -4,7 +4,6 @@ import api_path from "./Path";
 export async function getAccountInfo(){
     const credentials = getCookie("credentials")
     const path = api_path+"/user/get/profile-info/"+credentials.login
-    console.log(path)
     return await fetch(path,{
         credentials:"omit",
         method: 'GET',
@@ -125,3 +124,23 @@ export async function getPageContent(current_page){
         return result
     })
 }
+export async function getQuizHistory(){
+    const credentials = getCookie("credentials")
+    const path = api_path+"/user/get/quiz-history/user="+credentials.login
+    return await fetch(path,{
+        credentials:"omit",
+        method: 'GET',
+        mode:"cors",
+        headers:{
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin':'true',
+            Authorization: "Bearer "+credentials.token
+
+        },
+        xhrFields: { withCredentials: true}
+
+    }).then((result)=>{
+        return result
+    })
+}
+

@@ -1,0 +1,29 @@
+@import "../Account";
+@import "../../../index";
+
+.quiz-history-quiz-record{
+  width: calc($account-form-width - 5vw);
+  height: 3vh;
+
+  display: flex;
+
+  margin-left: 1vw;
+  margin-top: 0.4vh;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: dimgray;
+
+
+
+}
+.quiz-history-quiz-record-name{
+  margin-left: 1vw;
+
+  font-size: 2vh;
+  font-weight: bold;
+}
+.quiz-history-quiz-record-date{
+  margin-left: 14vw;
+  font-size: 1.5vh;
+}

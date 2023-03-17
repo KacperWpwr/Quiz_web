@@ -4,10 +4,10 @@ $themecolor:rgba(97,4,144,1);
   width: 40vw;
   height: 60vh;
   background-color: darkgrey;
-  border-color: $themecolor;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 4vh;
+
+  box-shadow: 0 0 48px -1px rgba(38, 38, 40, 1);
+
+  border-radius: 4vw;
   margin: auto;
   margin-top: 20vh;
 }

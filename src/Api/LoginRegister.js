@@ -9,7 +9,6 @@ export  const  Login = async (login, password)  =>{
         password:password
     }
     const path=api_path+login_path
-    console.log("path: "+path)
     return await fetch(path,{
         mode:"cors",
         method: "POST",
@@ -28,7 +27,6 @@ export const Register = async (login,password,match_password,email)=>{
         match_password:match_password,
         email:email
     }
-    console.log(register_request)
     const path = api_path+register_path
     return await fetch(path,{
         mode:"cors",

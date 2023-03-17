@@ -1,0 +1,45 @@
+.search-display-container{
+  width: 40vw;
+  height: 80vh;
+
+  position: fixed;
+  left: 30vw;
+  top: 15vh;
+
+  background-color: darkgray;
+
+  box-shadow: 0 0 48px -1px rgba(38, 38, 40, 1);
+
+  border-radius: 3vw;
+
+  overflow-y: scroll;
+}
+.search-display{
+  width: 36vw;
+  height: 3vw;
+
+  margin-left: 2vw;
+  margin-top: 1.5vh;
+  margin-bottom: -0.5vh;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 1.5vw;
+
+  border-color: dimgray;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0.5vw;
+
+  cursor: pointer;
+}
+.search-display:hover{
+  background-color: lightgray;
+}
+.search-display:active{
+  box-shadow: inset 0px 0px 10px -1px rgba(38, 38, 40, 1);
+}
+.name-display{
+  margin-left: 0.3vw;
+}

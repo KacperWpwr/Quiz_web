@@ -15,7 +15,10 @@ $account-form-width: 40vw;
 
   background-color: darkgray;
 
+
+  box-shadow: 0 0 48px -1px rgba(38, 38, 40, 1);
 }
+
 .account-choice-list-container{
 
   height: $account-form-height;
@@ -76,4 +79,7 @@ $account-form-width: 40vw;
 .account-content-display-container{
   width: calc($account-form-width - 3vw);
   height: $account-form-height;
+}
+.account-content-display-container.scroll{
+  overflow-y: scroll;
 }
