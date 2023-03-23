@@ -3,7 +3,7 @@ import api_path from "./Path";
 
 export async function getAccountInfo(){
     const credentials = getCookie("credentials")
-    const path = api_path+"/user/get/profile-info/"+credentials.login
+    const path = api_path+"/user/"+credentials.login+"/profile-info"
     return await fetch(path,{
         credentials:"omit",
         method: 'GET',
@@ -88,7 +88,7 @@ export async function changeLogin(new_username){
 
 export async function getPageNum(){
     const credentials = getCookie("credentials")
-    const path = api_path+"/user/get/quiz/page-number/"+credentials.login
+    const path = api_path+"/user/"+credentials.login+"/quiz/page-number"
     return await fetch(path,{
         credentials:"omit",
         method: 'GET',
@@ -107,7 +107,7 @@ export async function getPageNum(){
 }
 export async function getPageContent(current_page){
     const credentials = getCookie("credentials")
-    const path = api_path+"/user/get/quiz/page-content/user="+credentials.login+"/page="+current_page
+    const path = api_path+"/user/"+credentials.login+"/quiz/page-content/"+current_page
     return await fetch(path,{
         credentials:"omit",
         method: 'GET',
@@ -126,7 +126,7 @@ export async function getPageContent(current_page){
 }
 export async function getQuizHistory(){
     const credentials = getCookie("credentials")
-    const path = api_path+"/user/get/quiz-history/user="+credentials.login
+    const path = api_path+"/user/"+credentials.login+"/quiz-history"
     return await fetch(path,{
         credentials:"omit",
         method: 'GET',

@@ -13,7 +13,10 @@ export default function UserQuizzes(){
             if(result.ok){
                 const body = await result.json()
                 setPageNum(body.page_num)
-                setCurrentPage(1)
+                if(body.page_num>0){
+                    setCurrentPage(1)
+                }
+
             }
 
         }
@@ -41,7 +44,7 @@ export default function UserQuizzes(){
                </div>
             </div>
             <div className="user-quizzes-quiz-display-list">
-                {user_quizzes.map(quiz=>{return getQuizDisplay(quiz.quiz_name,quiz.id)})}
+                {user_quizzes.map(quiz=>{return getQuizDisplay(quiz.name,quiz.id)})}
             </div>
             <div className="user-quizzes-footer">
                 {getPageSelectionView(page_num,current_page,setCurrentPage)}

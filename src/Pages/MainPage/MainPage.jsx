@@ -21,21 +21,29 @@ import {getFollowedCreators, getProposedQuizes, getRecentQuizes} from "../../Api
  const profiles =[new Profile_Info("Admin",7),new Profile_Info("User3",3),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4)]
 
 
-export default function MainPage(){
+export default function MainPage({is_logged}){
     const  [recent_quizzes, setRecentQuizzes] = useState([])
     const  [proposed_quizzes, setProposedQuizzes] = useState([])
     const  [followed_creators, setFollowedCreators] = useState([])
     useEffect(() => {
         document.title="Home"
         const fetch_info = async ()=>{
-            const rec_quizzes = await getRecentQuizes()
-            setRecentQuizzes(rec_quizzes)
+            const response_rec = await getRecentQuizes()
+            if(response_rec.ok){
+                const body = await response_rec.json()
+                setRecentQuizzes(body.quiz_history)
+            }else{
+                alert("Something went wrong!")
+                return
+            }
             const prop_quizzes= await getProposedQuizes()
             setProposedQuizzes(prop_quizzes)
             const foll_creators = await getFollowedCreators()
             setFollowedCreators(foll_creators)
         }
-        fetch_info()
+        if(is_logged){
+            fetch_info()
+        }
     }, [])
 
     return(

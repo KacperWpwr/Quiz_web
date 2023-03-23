@@ -2,6 +2,10 @@ import Question from "./Question";
 import {useEffect, useState} from "react";
 import {Page} from "../../PageEnum";
 import {checkCookie, expireCookie, getCookie} from "../../Api/CookieManagement";
+import {addQuizToHistory, addRating, hasRated} from "../../Api/Quiz";
+import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 class Answer {
     constructor(is_correct, text,number) {
@@ -22,11 +26,8 @@ class QuizInfo{
         this.questions=questions
     }
 }
-const question1= new Question_Info("2+2 equals", [new Answer(true,4,1),new Answer(false,3,2),new Answer(false,5,3)])
-const question2 = new Question_Info("2*2 equals",[new Answer(true,4,1),new Answer(false,3,2),new Answer(false,5,3)])
-const question3 = new Question_Info("What is root of 4",[new Answer(false,1,1),new Answer(true,2,2),new Answer(false,3,3),new Answer(false,4,4)])
-const _questions=[question1,question2,question3]
-export default function Quiz(){
+
+export default function Quiz({is_logged}){
     const [is_started,setIsStarted] = useState(false)
     const [is_checked, setIsChecked]=useState(false)
     const [question_num,setQuestionNum]=useState(0)
@@ -35,8 +36,13 @@ export default function Quiz(){
     const [question_id,setQuestionId]=useState(0)
     const [button_checked,setButtonChecked]=useState(0)
     const [is_over,setIsOver]=useState(false)
-    const [quiz_name,setQuizName]= useState("QUIZ")
-    const [questions,setQuestions] = useState(_questions)
+    const [quiz_name,setQuizName]= useState("")
+    const [questions,setQuestions] = useState([])
+    const [quiz_id,setQuizId] = useState(0)
+    const [star_checked,setStarChecked] = useState()
+    const [creators_username,setCreatorUsername] = useState("")
+    const [has_rated,setHasRated] = useState(false)
+    const [is_creator,setIsCreator] = useState(false)
     let props={
         is_checked:is_checked,
         setIschecked:setIsChecked,
@@ -50,16 +56,31 @@ export default function Quiz(){
         setButtonChecked:setButtonChecked
     }
     useEffect(() => {
+        const fetch= async ()=>{
+            const result = await hasRated(quiz_id)
+            if(result.ok){
+                const body = await result.json()
+                const has_rtd = body
+                setHasRated(has_rtd)
+            }
+        }
+
         const quiz_exists=checkCookie("quiz")
         if(!quiz_exists){
             return;
         }
         const quiz = getCookie("quiz")
+        const credentials = getCookie("credentials")
         console.log(quiz)
         const this_quiz = QuizDTOResolve(quiz)
+        setQuizId(quiz.id)
+        setCreatorUsername(quiz.creator_username)
         setQuizName(this_quiz.name)
         setQuestions(this_quiz.questions)
+        setIsCreator(credentials.login===quiz.creator_username)
         document.title=quiz_name
+        fetch();
+
 
        expireCookie("quiz")
     }, []);
@@ -86,13 +107,47 @@ export default function Quiz(){
             <div className="quiz_start_over_container">
                 <div className="quiz_name">{quiz_name} </div>
                 <div className="quiz_button_container">
-                    <button className="quiz_button" onClick={()=>setIsStarted(true)}>Start quiz</button>
+                    <button className="quiz_button" onClick={()=>{setIsStarted(true);addQuizToHistory(quiz_id)}}>Start quiz</button>
                 </div>
             </div>
 
 
         </div>
     )
+    const renderRating = ()=>{
+        return(
+            <div className="quiz-rating-display-container">
+                <div className="quiz-rating-container">
+                    <div className="quiz-rating-star-container">
+                        <FontAwesomeIcon key={1} className={getStarRating(1,star_checked)} onClick={()=>setStarChecked(1)} icon={faStar}/>
+                        <FontAwesomeIcon key={2} className={getStarRating(2,star_checked)} onClick={()=>setStarChecked(2)} icon={faStar}/>
+                        <FontAwesomeIcon key={3} className={getStarRating(3,star_checked)} onClick={()=>setStarChecked(3)} icon={faStar}/>
+                        <FontAwesomeIcon key={4} className={getStarRating(4,star_checked)} onClick={()=>setStarChecked(4)} icon={faStar}/>
+                        <FontAwesomeIcon key={5} className={getStarRating(5,star_checked)} onClick={()=>setStarChecked(5)} icon={faStar}/>
+                    </div>
+                    <div className={star_checked>0 ? "quiz-rating-submit-opinion" : "quiz-rating-submit-opinion disabled"}
+                         onClick={()=>{ if(star_checked>0) send_opinion()}}>
+                        Submit
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+
+    const send_opinion = () =>{
+        const fetch = async () =>{
+            const response = await addRating(star_checked,quiz_id)
+            if(!response.ok){
+                console.log(response)
+            }
+        }
+        fetch()
+    }
+    const get_creator = () =>{
+        localStorage.setItem("creator-query",creators_username)
+        document.location.pathname='/creator'
+    }
 
     function restartquiz() {
         setIsOver(false)
@@ -108,6 +163,12 @@ export default function Quiz(){
                 <div className="quiz_info_label">Question answered: {question_id}</div>
                 <div className="quiz_info_label">Questions correct: {correct_num}</div>
                 <div className="quiz_info_label">Correct ratio: {(correct_num/(question_id)).toFixed(2)}</div>
+                {has_rated || is_creator? "": renderRating()}
+                {is_creator? "" : (
+                    <div className="quiz_button_container">
+                        <button className="quiz_button" onClick={()=>{get_creator()}}>Creators Page</button>
+                    </div>
+                )}
                 <div className="quiz_button_container">
                     <button className="quiz_button" onClick={()=>{restartquiz()}}>Restart</button>
                 </div>
@@ -120,6 +181,13 @@ export default function Quiz(){
     return is_started===true ? is_over? renderQuizOver: renderQuiz : renderQuizStart
 
 }
+function getStarRating(star_num,star_checked){
+    let class_name = "quiz-rating-star"
+    if(star_num<=star_checked){
+        class_name = class_name +" checked"
+    }
+    return class_name
+}
 
 
 function nextQuestion(question_id,setQuestionId,setButtonChecked,setIsChecked,setIsOver,question_num){
@@ -128,6 +196,8 @@ function nextQuestion(question_id,setQuestionId,setButtonChecked,setIsChecked,se
     setIsChecked(false)
 
     if(question_id===question_num-1) setIsOver(true)
+
+
 
 }
 function QuizDTOResolve(quiz_dto){

@@ -12,14 +12,14 @@ import './Pages/Account/AccountInfo/AccountInfo.scss'
 import './Pages/Account/UserQuizzes/UserQuizzes.scss'
 import './Pages/Account/QuizHistory/QuizHistory.scss'
 import './Pages/SearchDisplay/SearchDisplay.scss'
+import './Pages/CreatorPage/CreatorPage.scss'
+import './Pages/Account/FollowedCreators/FollowedCreators.scss'
 
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
 

@@ -9,13 +9,15 @@ export default function RegisterForm({setLogged}){
     const [password_error,setPasswordError]= useState("")
     const [email_correct,setEmailCorrect]= useState(true)
     const [email_error,setEmailError]= useState("")
+    const [checkbox_correct,setCheckboxCorrect] = useState(true)
     const register_props={
         setLoginCorrect:setLoginCorrect,
         setLoginError:setLoginError,
         setPasswordCorrect:setPasswordCorrect,
         setPasswordError:setPasswordError,
         setEmailCorrect:setEmailCorrect,
-        setEmailError:setEmailError
+        setEmailError:setEmailError,
+        setCheckboxCorrect
     }
     return(
         <div className="reg-inner-container">
@@ -40,7 +42,7 @@ export default function RegisterForm({setLogged}){
 
 
             <div id="checkbox-register">
-                <input id="reg-check" type="checkbox"/>
+                <input id="reg-check" type="checkbox" className={getCheckboxCorrect(checkbox_correct)}/>
                 <label htmlFor="reg-check">I have read and accept user terms and terms of service.</label>
             </div>
             <button className="log-reg-button" onClick={()=>{registerFunction(setLogged,register_props)}}>Sing up</button>
@@ -54,6 +56,13 @@ function getClass(is_correct){
     }
     return className
 }
+function getCheckboxCorrect(checkbox_correct){
+    if(checkbox_correct ){
+        return ""
+    }
+    return "check-incorrect"
+}
+//
 
 function registerFunction(setLogged,register_props){
     register_props.setLoginCorrect(true)
@@ -62,12 +71,36 @@ function registerFunction(setLogged,register_props){
     register_props.setPasswordError("")
     register_props.setEmailCorrect(true)
     register_props.setEmailError("")
+    register_props.setCheckboxCorrect(true)
 
     const login = document.getElementById("register-login-input").value
     const password = document.getElementById("register-password-input").value
     const match_password = document.getElementById("register-match-password-input").value
     const email = document.getElementById("register-email-input").value
+    const checkbox = document.getElementById("reg-check").checked
+    let input_present= true
+    if(login===""){
+        register_props.setLoginCorrect(false)
+        register_props.setLoginError("Field cannot be empty")
+        input_present= false
+    }
+    if(password===""||match_password===""){
+        register_props.setPasswordCorrect(false)
+        register_props.setPasswordError("Fields cannot be empty")
+        input_present= false
+    }
 
+    if(email===""){
+        register_props.setEmailCorrect(false)
+        register_props.setEmailError("Field cannot be empty")
+        input_present= false
+    }
+
+    if(!checkbox){
+        console.log("No checkbox")
+        register_props.setCheckboxCorrect(false)
+        input_present=false
+    }
 
     const register_func = async ()=>{
         const response = await Register(login,password,match_password,email,setLogged)
@@ -98,6 +131,8 @@ function registerFunction(setLogged,register_props){
 
 
     }
-    register_func()
+    if(input_present){
+        register_func()
+    }
 
 }

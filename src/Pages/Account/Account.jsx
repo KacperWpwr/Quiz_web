@@ -7,8 +7,8 @@ import FollowedCreators from "./FollowedCreators/FollowedCreators";
 import QuizHistory from "./QuizHistory/QuizHistory";
 
 export default function Account(){
-    const [is_account_display,setIsAccountDisplay] = useState(false)
-    const [is_quiz_display,setIsQuizDisplay] = useState(true)
+    const [is_account_display,setIsAccountDisplay] = useState(true)
+    const [is_quiz_display,setIsQuizDisplay] = useState(false)
     const [is_followed_display,setIsFollowedDisplay] = useState(false)
     const [is_quiz_history,setIsQuizHistory] = useState(false)
 

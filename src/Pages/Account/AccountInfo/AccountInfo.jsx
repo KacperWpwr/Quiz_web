@@ -17,9 +17,13 @@ export default function AccountInfo(){
             if(result.ok){
                 const body = await result.json()
                 setLogin(body.login)
+                setTempLogin(body.login)
                 setEmail(body.email)
+                setTempEmail(body.email)
+                console.log(newlineToBR(body.description))
                 setDescription(body.description)
-                reset_temps()
+                setTempDescription(body.description)
+
             }else{
                 alert("Something went wrong")
 
@@ -42,7 +46,7 @@ export default function AccountInfo(){
     const reset_temps=()=>{
         setTempLogin(login)
         setTempEmail(email)
-        setTempDescription(description)
+        setTempDescription(brToNewline(description))
     }
     const save_account_info = ()=>{
         const save = async ()=>{
@@ -188,6 +192,26 @@ function getDescriptionTextField(temp_description,setTempDescription){
     return(
         <textarea  className="account-info-description-textarea" value={temp_description} onChange={(event)=>{setTempDescription(event.target.value)}}/>
     )
+}
+function newlineToBR(string){
+    let splitted = string.split('\n')
+    console.log(splitted)
+    splitted=splitted.map(split=>split+" <br/>")
+    console.log()
+    let result =''
+    splitted.forEach(split=>{
+        result= result+split
+    })
+    return result
+}
+function brToNewline(string){
+    let splitted = string.split('<br/>')
+    splitted.map(split=>split+"\n")
+    let result =''
+    splitted.forEach(split=>{
+        result= result+split
+    })
+    return result
 }
 
 

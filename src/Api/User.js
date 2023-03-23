@@ -1,13 +1,21 @@
 import api_path from "./Path";
+import {getCookie} from "./CookieManagement";
 
-export function searchUserStrict(text){
-    const path = api_path+"/user/search/strict/"+text
-
+export async function searchUserStrict(text){
+    const credentials = getCookie("credentials")
+    let path = api_path+"/user/search/strict/"+text
+    if(credentials){
+        path = path + "?user="+credentials.login
+    }
     return fetch(path)
 }
 
-export function searchUserAdvanced(text){
-    const path = api_path+"/user/search/advanced/"+text
+export async function searchUserAdvanced(text){
+    const credentials = getCookie("credentials")
+    let path = api_path+"/user/search/advanced/"+text
+    if(credentials){
+        path = path + "?user="+credentials.login
+    }
 
     return fetch(path)
 }

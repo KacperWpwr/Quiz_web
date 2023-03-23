@@ -5,6 +5,7 @@ import {useState} from "react";
 import {findAllByDisplayValue} from "@testing-library/react";
 import {getQuizById, quizSearchStrict} from "./Api/Quiz";
 import {searchUserStrict} from "./Api/User";
+import {getQuiz} from "./InnerFunctions/Quiz";
 
 
 
@@ -36,16 +37,10 @@ export default function Navbar({is_logged,setIsLogged}){
         }
 
     }
-    const getQuiz= async (id)=>{
-        const result = await getQuizById(id)
-        const body = await result.json()
-        console.log(body)
-        createCookie("quiz",body,null,"/quiz")
-        document.location.pathname="/quiz"
-    }
 
     const getUser = async(name)=>{
-
+        localStorage.setItem("creator-query",name)
+        document.location.pathname="/creator"
     }
 
     const get = (result)=>{
@@ -57,9 +52,9 @@ export default function Navbar({is_logged,setIsLogged}){
     }
     const search = ()=>{
         if(search_query[0]==='@'){
-            localStorage.setItem("is-user-search",true)
+            localStorage.setItem("is-user-search","true")
         }else{
-            localStorage.setItem("is-user-search",false)
+            localStorage.setItem("is-user-search","false")
         }
         localStorage.setItem("search-query",search_query)
         document.location.pathname="/search"

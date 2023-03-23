@@ -54,18 +54,25 @@ $themecolor:rgba(97,4,144,1);
 .log-reg-button{
   width: 8vw;
   height: 4vh;
+
   justify-self: center;
+
   background-color: $themecolor;
+
   color: azure;
-  border-style: solid;
-  border-color: darkviolet;
-  border-radius: 0.5vh;
+
+  border-style: none;
+  border-radius: 0.3vw;
+  box-shadow: 0 0 10px -1px rgba(38, 38, 40, 1);
+
+  cursor: pointer;
 }
 .log-reg-button:hover{
-  background-color: rgba(100,12,196,1);
+  background-color: blueviolet;
+
 }
 .log-reg-button:active{
-  background-color: $themecolor;
+  box-shadow: inset 0 0 5px -1px rgba(38, 38, 40, 1);
 }
 .log-reg-text{
   height: 3vh;
@@ -89,6 +96,11 @@ $themecolor:rgba(97,4,144,1);
 
 #checkbox-register{
   margin-bottom: 1vh;
+}
+.check-incorrect{
+  outline-color: red;
+  outline-width: 2px;
+  outline-style: solid;
 }
 
 

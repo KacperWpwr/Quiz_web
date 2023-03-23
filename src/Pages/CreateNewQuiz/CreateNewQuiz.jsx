@@ -20,7 +20,8 @@ class Answer{
 
 }
 export default function CreateNewQuiz(){
-    const[quiz_name,setQuizName]=useState("")
+    const [quiz_name,setQuizName]=useState("")
+    const [is_quiz_name_correct,setIsQuizNameCorrect] = useState(true)
     const [questions,setQuestions]= useState([])
     const [question_id,setQuestionId]=useState(1)
     const [editor_active,setEditorActive]=useState(false)
@@ -31,10 +32,34 @@ export default function CreateNewQuiz(){
     },[])
 
     const create = async ()=>{
+        setIsQuizNameCorrect(true)
+        if(quiz_name === ""){
+            setIsQuizNameCorrect(false)
+
+            return
+        }
+
+        if(questions.length===0){
+            alert("Quiz needs to have at least one question")
+            return
+        }
+
+        let are_question_correct=true
+        questions.forEach(question=>{
+           if(question.answers.length<2){
+               are_question_correct=false
+           }
+        })
+
+        if(!are_question_correct){
+            alert("Some questions are incorrect!\n Questions have to contain at least 2 answers")
+            return
+        }
+
         const result = await CreateQuiz(quiz_name,QuestionsToDTO(questions))
         console.log(result)
         if(!result.ok){
-            console.log("Error")
+            alert("Something went wrong!")
             return;
         }
         const new_quiz= await result.json()
@@ -81,7 +106,7 @@ export default function CreateNewQuiz(){
 
             <div className="cq-quiz-creation-menu">
                 <div className="cq-quiz-name-input-container">
-                    <input type="text" value={quiz_name} placeholder="Quiz Name" className="cq-quiz-name-input" onChange={(event)=>{setQuizName(event.target.value)}}/>
+                    <input type="text" value={quiz_name} placeholder="Quiz Name" className={is_quiz_name_correct ? "cq-quiz-name-input" : "cq-quiz-name-input incorrect"} onChange={(event)=>{setQuizName(event.target.value)}}/>
                 </div>
                 <div className="cq-create-quiz-button-container">
                     <div className="cq-create-quiz-button" onClick={()=>create()}>Create Quiz</div>

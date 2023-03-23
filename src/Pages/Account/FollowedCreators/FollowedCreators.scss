@@ -1,0 +1,48 @@
+@import "../Account";
+.ac-creator-container{
+    width:calc($account-form-width - 5vw);
+    height: 5vh;
+
+    margin: 1vh 1vw;
+
+    display: flex;
+    align-items: center;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 3vw;
+
+    cursor: pointer;
+}
+.ac-creator-container:hover{
+    background-color: lightgray;
+}
+.ac-creator-container:active{
+    background-color: darkgray;
+}
+.ac-creator-name{
+    height: 3vh;
+    width: 10vw;
+
+    margin-left: 1vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2vh;
+    font-weight: bold;
+}
+.ac-creator-info{
+    height: 3vh;
+    width: 6vw;
+
+    margin-left: 0.7vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.7vh;
+}

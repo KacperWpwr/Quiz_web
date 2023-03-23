@@ -9,11 +9,11 @@ import CreateNewQuiz from "./Pages/CreateNewQuiz/CreateNewQuiz";
 import {checkLogin} from "./Api/LoginCheck";
 import Account from "./Pages/Account/Account";
 import SearchDisplay from "./Pages/SearchDisplay/SearchDisplay";
+import CreatorPage from "./Pages/CreatorPage/CreatorPage";
 
 
 
 export default function App(){
-    const [page,setPage] = useState(Page.CreateQuizPage);
     const [is_logged,setIsLogged] = useState(false)
     useEffect(()=>{
         const log_check= async()=>{
@@ -28,17 +28,19 @@ export default function App(){
         <BrowserRouter>
             <Routes>
                 <Route  path="/" element={<Navbar is_logged={is_logged} setIsLogged={setIsLogged}/>}>
-                    <Route index={true} element={<MainPage/>}/>
+                    <Route index={true} element={<MainPage is_logged={is_logged}/>}/>
                     <Route path="login" element={<LoginRegister setIsLogged={setIsLogged}/>}/>
-                    <Route path="quiz" element={<Quiz setPage={setPage}/>}/>
+                    <Route path="quiz" element={<Quiz is_logged={is_logged}/>}/>
                     <Route path="quiz-creator" element={<CreateNewQuiz/>}/>
                     <Route path="account" element={<Account/>} />
                     <Route path="search" element={<SearchDisplay/>}/>
+                    <Route path="creator" element={<CreatorPage is_logged={is_logged}/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
     )
 }
+//<CreatorPage/>
 /*
         <div>
 
