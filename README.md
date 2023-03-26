@@ -17,7 +17,7 @@ This page allows for displaying and editing user info, displaying user made quiz
 ## Login/Register Page
 Provides acces for Login and Register forms. User can switch between these forms using switch menu.
 
-Login cForm takes login and password and then validates then. On success redirects user to main page. On Failure it displays feedback to user.
+Login Form takes login and password and then validates then. On success redirects user to main page. On Failure it displays feedback to user.
 
 Register form takes login, password, matching password and email. It also requires agreeing to the Terms of service. Then it sends inforamtion to server.
 On success redirects user to main page. On Failure it displays feedback to user.
