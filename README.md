@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Project Information
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Navbar
+Navbar display page name. Posseses input box providing search functionlity. It also contains Links redirecting to authorization page, creating quiz menu, user account. It also provides logout function.
 
-## Available Scripts
 
-In the project directory, you can run:
+##Main Page
+Displays information about Recently takien quizzes, followed creator and quizzes user might like based on best rating quizzes from followed creators.
 
-### `npm start`
+##Create New Quiz Page
+Allows for creation of new quiz. Contains input field for quiz name and button for adding question.
+USer can edit and delete question. On edit special menu is displayed allowing to add answers and question to question form. It allows also for previeving question look.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##Account Page
+This page allows for displaying and editing user info, displaying user made quizzes, followed cfreators and quiz history.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##Login/Register Page
+Provides acces for Login and Register forms. User can switch between these forms using switch menu.
 
-### `npm test`
+Login cForm takes login and password and then validates then. On success redirects user to main page. On Failure it displays feedback to user.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Register form takes login, password, matching password and email. It also requires agreeing to the Terms of service. Then it sends inforamtion to server.
+On success redirects user to main page. On Failure it displays feedback to user.
 
-### `npm run build`
+##Quiz Page
+Page has three forms for display.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Quiz Start Form displays quiz name. Posseses button allowing to begin quiz.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Quiz Question Form displays question text and answers list. When users checks an answer it allows him/her to move forward. It also displays number of completed questions, correct and incorrec answers number.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Quiz Over Form which displays users performance in quiz. It provides information about number of questions compledent, number of correct answers and correct answers ratio. It also provides option to rate quiz in stars from 1 to 5, button to vist creator page, restart quiz and exit to menu.
 
-### `npm run eject`
+##Search Display Page
+Page that displays search result based on user input.
+Default input gives user quiz result. 
+Input precedeed by "@" gives creator search results.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+###Thank you for reading!
+ 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
