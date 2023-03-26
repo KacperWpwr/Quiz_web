@@ -4,7 +4,6 @@ import LoginRegister from "./Pages/LoginRegister/LoginRegister";
 import MainPage from "./Pages/MainPage/MainPage";
 import {useEffect, useState} from "react";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import {Page} from "./PageEnum";
 import CreateNewQuiz from "./Pages/CreateNewQuiz/CreateNewQuiz";
 import {checkLogin} from "./Api/LoginCheck";
 import Account from "./Pages/Account/Account";
@@ -23,13 +22,24 @@ export default function App(){
         log_check()
 
     },[])
+    const setLogged = (is_log)=>{
+        const record = is_logged
+        setIsLogged(is_log)
+        if(record&&!is_log){
+            if (window.location.pathname==='/'){
+                window.location.reload()
+            }
+        }
+    }
+
+
     return (
 
         <BrowserRouter>
             <Routes>
-                <Route  path="/" element={<Navbar is_logged={is_logged} setIsLogged={setIsLogged}/>}>
+                <Route  path="/" element={<Navbar is_logged={is_logged} setIsLogged={setLogged}/>}>
                     <Route index={true} element={<MainPage is_logged={is_logged}/>}/>
-                    <Route path="login" element={<LoginRegister setIsLogged={setIsLogged}/>}/>
+                    <Route path="login" element={<LoginRegister setIsLogged={setLogged}/>}/>
                     <Route path="quiz" element={<Quiz is_logged={is_logged}/>}/>
                     <Route path="quiz-creator" element={<CreateNewQuiz/>}/>
                     <Route path="account" element={<Account/>} />
@@ -40,12 +50,3 @@ export default function App(){
         </BrowserRouter>
     )
 }
-//<CreatorPage/>
-/*
-        <div>
-
-            {getpage()}
-        </div>
-* */
-//<Quiz/>
-//<LoginRegister/>

@@ -7,12 +7,12 @@ export async function getQuizById(id){
     return result
 }
 export async function quizSearchStrict(name){
-    const path = api_path+"/quiz/search/strict/"+name
+    const path = api_path+"/quiz/search/strict/"+encodeURI(name)
     const result = await fetch(path)
     return result
 }
 export async function quizSearchAdvanced(name){
-    const path = api_path+"/quiz/search/advanced/"+name
+    const path = api_path+"/quiz/search/advanced/"+encodeURI(name)
     const result = await fetch(path)
     return result
 }
@@ -72,6 +72,7 @@ export async function hasRated(quiz_id){
     const credentials = getCookie("credentials")
 
     const path = api_path+"/user/"+credentials.login+"/given-opinion?quiz="+quiz_id
+    console.log(quiz_id)
 
     return fetch(path,{
         credentials: "omit",

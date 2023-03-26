@@ -17,10 +17,17 @@ export async function getRecentQuizes(){
     })
 }
 export async function getProposedQuizes(){
-    //TODO: fetch
-    return []
-}
-export async function getFollowedCreators(){
-    //TODO: fetch
-    return []
+    const credentials = getCookie("credentials")
+    const path = api_path+"/user/"+credentials.login+"/proposed-quizzes"
+    console.log(path)
+    return fetch(path,{
+        credentials: 'omit',
+        mode: 'cors',
+        method: "GET",
+        headers:{
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin':'true',
+            Authorization: "Bearer "+credentials.token
+        }
+    })
 }

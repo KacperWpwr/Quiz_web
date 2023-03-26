@@ -1,11 +1,8 @@
-import {Page} from "./PageEnum";
 import {Link, Outlet} from "react-router-dom";
 import {createCookie, expireCookie} from "./Api/CookieManagement";
 import {useState} from "react";
-import {findAllByDisplayValue} from "@testing-library/react";
-import {getQuizById, quizSearchStrict} from "./Api/Quiz";
+import { quizSearchStrict} from "./Api/Quiz";
 import {searchUserStrict} from "./Api/User";
-import {getQuiz} from "./InnerFunctions/Quiz";
 
 
 
@@ -16,6 +13,14 @@ export default function Navbar({is_logged,setIsLogged}){
     const [search_query,setSearchQuery] = useState("")
 
     const SearchBarOnInput = async (text)=>{
+
+
+
+        if(/[#?%^|\\/\[\];]/.test(text)){
+            alert("This character is forbidden")
+            return
+        }
+
         setSearchQuery(text)
         setSearchResults([])
         if(text===""){
@@ -45,7 +50,8 @@ export default function Navbar({is_logged,setIsLogged}){
 
     const get = (result)=>{
         if(result.id){
-            getQuiz(result.id)
+            createCookie("quiz",result.id,null,"/quiz")
+            document.location.pathname="/quiz"
         }else{
             getUser(result.name)
         }

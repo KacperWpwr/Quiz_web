@@ -64,7 +64,7 @@ function loginFunction(setLogged,logging_props){
 
             createCookie("credentials",{token:body.token,login:login},date,"/")
             setLogged(true)
-            document.location.pathname="/"
+            window.location.pathname="/"
         }else{
             switch (body.code){
                 case 429:

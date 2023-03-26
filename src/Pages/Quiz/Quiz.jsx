@@ -1,8 +1,7 @@
 import Question from "./Question";
 import {useEffect, useState} from "react";
-import {Page} from "../../PageEnum";
 import {checkCookie, expireCookie, getCookie} from "../../Api/CookieManagement";
-import {addQuizToHistory, addRating, hasRated} from "../../Api/Quiz";
+import {addQuizToHistory, addRating, getQuizById, hasRated} from "../../Api/Quiz";
 import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -57,30 +56,37 @@ export default function Quiz({is_logged}){
     }
     useEffect(() => {
         const fetch= async ()=>{
-            const result = await hasRated(quiz_id)
-            if(result.ok){
-                const body = await result.json()
-                const has_rtd = body
-                setHasRated(has_rtd)
+            const id = getCookie("quiz")
+            const result_quiz = await getQuizById(id)
+            const credentials = getCookie("credentials")
+            if(result_quiz.ok){
+                const quiz = await result_quiz.json()
+                setQuizId(quiz.id)
+                const this_quiz = QuizDTOResolve(quiz)
+                setCreatorUsername(quiz.creator_username)
+                setQuizName(this_quiz.name)
+                setQuestions(this_quiz.questions)
+                setIsCreator(credentials.login===quiz.creator_username)
+            }else{
+                alert("Something went wrong")
+            }
+
+            const result_rtd = await hasRated(id)
+            if(result_rtd.ok){
+                const body = await result_rtd.json()
+                setHasRated(body)
             }
         }
 
         const quiz_exists=checkCookie("quiz")
         if(!quiz_exists){
-            return;
+            alert("Something went wrong")
+            window.location.pathname="/"
         }
-        const quiz = getCookie("quiz")
-        const credentials = getCookie("credentials")
-        console.log(quiz)
-        const this_quiz = QuizDTOResolve(quiz)
-        setQuizId(quiz.id)
-        setCreatorUsername(quiz.creator_username)
-        setQuizName(this_quiz.name)
-        setQuestions(this_quiz.questions)
-        setIsCreator(credentials.login===quiz.creator_username)
-        document.title=quiz_name
-        fetch();
 
+
+        fetch();
+        document.title=quiz_name
 
        expireCookie("quiz")
     }, []);
@@ -139,14 +145,19 @@ export default function Quiz({is_logged}){
         const fetch = async () =>{
             const response = await addRating(star_checked,quiz_id)
             if(!response.ok){
-                console.log(response)
+                alert("Something went wrong!")
+                window.location.pathname='/'
+            }else{
+                setHasRated(true)
             }
         }
-        fetch()
+        if(is_logged){
+            fetch()
+        }
     }
     const get_creator = () =>{
         localStorage.setItem("creator-query",creators_username)
-        document.location.pathname='/creator'
+        window.location.pathname='/creator'
     }
 
     function restartquiz() {
@@ -208,9 +219,10 @@ function QuizDTOResolve(quiz_dto){
         const question_text= questions_dto[i].question_text
         const answers_dto= questions_dto[i].answers
         let answers=[]
-        for(let j=0;j<questions_dto.length;j++){
+        for(let j=0;j<answers_dto.length;j++){
             answers[j]= new Answer(answers_dto[j].is_correct,answers_dto[j].answer_text,1+j)
         }
+        console.log(answers)
         new_questions[i]=new Question_Info(question_text,answers)
     }
     return new QuizInfo(name,new_questions)

@@ -7,7 +7,7 @@ import {
     getCreatorNewest,
     getCreatorTop, unfollowCreator
 } from "../../Api/Creator";
-import {getQuiz} from "../../InnerFunctions/Quiz";
+import {createCookie} from "../../Api/CookieManagement";
 
 
 export default function CreatorPage({is_logged}){
@@ -39,7 +39,7 @@ export default function CreatorPage({is_logged}){
 
             }else{
                 alert('Something went wrong')
-                document.location.pathname='/'
+                window.location.pathname='/'
             }
         }
         const fetch_newest = async ()=>{
@@ -51,7 +51,7 @@ export default function CreatorPage({is_logged}){
                 setIsNewest(true)
             }else {
                 alert('Something went wrong')
-                document.location.pathname='/'
+                window.location.pathname='/'
             }
         }
         const fetch_is_followed = async ()=>{
@@ -118,7 +118,7 @@ export default function CreatorPage({is_logged}){
             setIsTop(true)
         }else{
             alert('Something went wrong')
-            document.location.pathname='/'
+            window.location.pathname='/'
         }
 
     }
@@ -137,7 +137,7 @@ export default function CreatorPage({is_logged}){
             setIsAll(true)
         }else{
             alert('Something went wrong')
-            document.location.pathname='/'
+            window.location.pathname='/'
         }
 
     }
@@ -149,10 +149,10 @@ export default function CreatorPage({is_logged}){
                 setIsFollowing(true)
             }else{
                 alert('Something went wrong')
-                document.location.pathname='/'
+                window.location.pathname='/'
             }
         }else{
-            document.location.pathname="/login"
+            window.location.pathname="/login"
         }
     }
     const unfollow = async ()=>{
@@ -161,7 +161,7 @@ export default function CreatorPage({is_logged}){
             setIsFollowing(false)
         }else{
             alert('Something went wrong')
-            document.location.pathname='/'
+            window.location.pathname='/'
         }
     }
     const follow_button_action = ()=>{
@@ -236,7 +236,7 @@ function getChoiceClass(is_active){
 }
 function renderQuizSheet(quiz){
     return(
-        <div key={quiz.id} className="cp-quiz-display-view" onClick={()=>getQuiz(quiz.id)}>
+        <div key={quiz.id} className="cp-quiz-display-view" onClick={()=>{createCookie("quiz",quiz.id,null,"/quiz");window.location.pathname="/quiz"}}>
             <div className="cp-quiz-display-view-title">{quiz.name}</div>
             <div className="cp-quiz-display-view-label">Questions: {quiz.question_amount}</div>
             <div className="cp-quiz-display-view-label">Rating: {quiz.rating ===0 ? "--": parseFloat(quiz.rating).toFixed(2)}</div>

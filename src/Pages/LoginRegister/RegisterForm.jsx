@@ -84,6 +84,11 @@ function registerFunction(setLogged,register_props){
         register_props.setLoginError("Field cannot be empty")
         input_present= false
     }
+    if(/[#?%^|\\/\[\];]/.test(login)){
+        register_props.setLoginCorrect(false)
+        register_props.setLoginError("Login contains invalid characters")
+        input_present= false
+    }
     if(password===""||match_password===""){
         register_props.setPasswordCorrect(false)
         register_props.setPasswordError("Fields cannot be empty")
@@ -110,7 +115,7 @@ function registerFunction(setLogged,register_props){
             date.setDate(new Date()+ 24*60*60*1000)
             createCookie("credentials",{token:body.token,login:login},date,"/")
             setLogged(true)
-            document.location.pathname="/"
+            window.location.pathname="/"
         }else{
             switch (body.code){
                 case 425:

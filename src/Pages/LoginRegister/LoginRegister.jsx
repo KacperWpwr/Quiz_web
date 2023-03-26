@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {Login, Register} from "../../Api/LoginRegister";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 export default function LoginRegister({setIsLogged}){

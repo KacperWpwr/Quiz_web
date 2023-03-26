@@ -13,7 +13,7 @@ export default function FollowedCreators() {
                 setFollowedCreators(body.followed_list)
             } else {
                 alert("Something went wrong")
-                document.location.pathname = "/"
+                window.location.pathname = "/"
             }
         }
         fetch_creators()
@@ -38,7 +38,7 @@ function getDisplayClass(has_content){
 
 function goToUser(username) {
     localStorage.setItem("creator-query",username)
-    document.location.pathname='/creator'
+    window.location.pathname='/creator'
 }
 
 function getCreatorForm(creator){

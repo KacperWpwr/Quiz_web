@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {findAllByDisplayValue} from "@testing-library/react";
 import {CreateQuiz} from "../../Api/CreateQuiz";
 import {createCookie} from "../../Api/CookieManagement";
 
@@ -19,6 +18,7 @@ class Answer{
     }
 
 }
+
 export default function CreateNewQuiz(){
     const [quiz_name,setQuizName]=useState("")
     const [is_quiz_name_correct,setIsQuizNameCorrect] = useState(true)
@@ -39,8 +39,34 @@ export default function CreateNewQuiz(){
             return
         }
 
+        if(quiz_name[0] === '@'){
+            setIsQuizNameCorrect(false)
+            alert("Quiz name cannot start with @ !")
+
+            return
+        }
+
+        if( /[#?%^|\\/\[\];]/.test(quiz_name)){
+            setIsQuizNameCorrect(false)
+            alert("Quiz name contains forbidden characters !")
+
+            return
+        }
+
         if(questions.length===0){
             alert("Quiz needs to have at least one question")
+            return
+        }
+        let are_answers_correct = true
+        questions.map(question=>{
+            question.answers.map(answer=>{
+                if(answer.text.length<1){
+                    are_answers_correct= false
+                }
+            })
+        })
+        if(!are_answers_correct){
+            alert("Answers have to contain at least one character")
             return
         }
 
@@ -63,10 +89,8 @@ export default function CreateNewQuiz(){
             return;
         }
         const new_quiz= await result.json()
-        const date = new Date();
-        date.setDate(new Date()+ 24*60*60*1000)
-        createCookie("quiz",new_quiz,date,"/quiz")
-        document.location.pathname="/quiz"
+        createCookie("quiz",new_quiz.id,null,"/quiz")
+        window.location.pathname="/quiz"
     }
 
     const close_editor = ()=>{

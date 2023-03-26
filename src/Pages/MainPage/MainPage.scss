@@ -77,10 +77,24 @@ $main-page-second-col-width: 33vw;
 .main-page-quiz-profile{
   height: calc($main-page-height / 2  - 6vh);
   width: 10vw;
-  margin: 1vh 1vw;
-  display: inline-grid;
-  background-color: gainsboro;
 
+  margin: 1vh 1vw;
+
+  display: inline-grid;
+
+  background-color: lightgray;
+
+  border-style: none;
+  box-shadow: 0 0 7px -1px rgba(38, 38, 40, 1);
+
+  cursor: pointer;
+
+}
+.main-page-quiz-profile:hover{
+  background-color:  gainsboro;
+}
+.main-page-quiz-profile:active{
+  box-shadow: inset 0 0 7px -1px rgba(38, 38, 40, 1);
 }
 .main-page-quiz-name{
   font-size: 1.5vh;
@@ -102,9 +116,19 @@ $main-page-second-col-width: 33vw;
 .main-page-creator-profile{
   width: calc($main-page-second-col-width - 1vw);
   height: 7vh;
+
   margin: 1vh 0.5vw;
+
   display: flex;
- justify-items: left;
+  justify-items: left;
+
+  background-color: lightgray;
+
+  box-shadow: 0 0 7px -1px rgba(38, 38, 40, 1);
+
+  cursor: pointer;
+}
+.main-page-creator-profile:hover{
   background-color: gainsboro;
 }
 .main-page-creator-profile-pic-container{

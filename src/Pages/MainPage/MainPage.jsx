@@ -1,7 +1,8 @@
-import {Page} from "../../PageEnum";
-import {findAllByDisplayValue} from "@testing-library/react";
 import {useEffect, useState} from "react";
-import {getFollowedCreators, getProposedQuizes, getRecentQuizes} from "../../Api/MainPage";
+import { getProposedQuizes, getRecentQuizes} from "../../Api/MainPage";
+import {createCookie, getCookie} from "../../Api/CookieManagement";
+import {getFollowedCreators} from "../../Api/Creator";
+import default_image from "../../Images/empty.jpg"
  class Quiz_Information{
     constructor(quiz_name,author_name,question_number) {
         this.quiz_name=quiz_name
@@ -31,20 +32,26 @@ export default function MainPage({is_logged}){
             const response_rec = await getRecentQuizes()
             if(response_rec.ok){
                 const body = await response_rec.json()
-                setRecentQuizzes(body.quiz_history)
-            }else{
-                alert("Something went wrong!")
-                return
+                setRecentQuizzes(body.quizzes)
             }
-            const prop_quizzes= await getProposedQuizes()
-            setProposedQuizzes(prop_quizzes)
-            const foll_creators = await getFollowedCreators()
-            setFollowedCreators(foll_creators)
+            const response_prop= await getProposedQuizes()
+            if(response_prop.ok){
+                const body = await response_prop.json()
+                setProposedQuizzes(body.quizzes)
+            }
+
+            const response_foll = await getFollowedCreators()
+            if(response_foll.ok){
+                const body = await response_foll.json()
+                setFollowedCreators(body.followed_list)
+            }
         }
-        if(is_logged){
+
+        if(getCookie('credentials')){
             fetch_info()
         }
-    }, [])
+
+    }, [is_logged])
 
     return(
         <div className="main-page-container">
@@ -76,15 +83,15 @@ export default function MainPage({is_logged}){
 
 function generate_quiz_sheet(quiz_info){
     return(
-        <button className="main-page-quiz-profile" onClick={()=>{window.location="/quiz"}}>
-            <div className="main-page-quiz-name">{quiz_info.quiz_name}</div>
+        <button className="main-page-quiz-profile" onClick={()=>{createCookie("quiz",quiz_info.id,null,"/quiz");window.location.pathname="/quiz"}}>
+            <div className="main-page-quiz-name">{quiz_info.name}</div>
             <div>
                 <div className="main-page-quiz-info-label">Author name: </div>
-                <div className="main-page-quiz-info">{quiz_info.author_name} </div>
+                <div className="main-page-quiz-info">{quiz_info.creator_username} </div>
             </div>
             <div>
                 <div className="main-page-quiz-info-label">Number of questions </div>
-                <div className="main-page-quiz-info">{quiz_info.question_number}</div>
+                <div className="main-page-quiz-info">{quiz_info.question_amount}</div>
             </div>
 
         </button>
@@ -92,13 +99,13 @@ function generate_quiz_sheet(quiz_info){
 }
 function generate_creator_sheet(profile){
     return(
-        <button className="main-page-creator-profile">
+        <button className="main-page-creator-profile" onClick={()=>{localStorage.setItem("creator-query",profile.username);window.location.pathname="/creator"}}>
             <div className="main-page-creator-profile-pic-container">
-                <img src="public/empty.jpg" className="main-page-creator-profile-pic"/>
+                <img src={default_image} className="main-page-creator-profile-pic"/>
             </div>
             <div className="main-page-profile-info-container">
-                <div className="main-page-profile-name">{profile.name}</div>
-                <div className="main-page-profile-info">Number of quizes: {profile.quiz_number}</div>
+                <div className="main-page-profile-name">{profile.username}</div>
+                <div className="main-page-profile-info">Number of quizes: {profile.quiz_num}</div>
             </div>
         </button>
     )
