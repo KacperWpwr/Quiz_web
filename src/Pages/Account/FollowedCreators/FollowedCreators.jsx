@@ -9,7 +9,6 @@ export default function FollowedCreators() {
             const result = await getFollowedCreators()
             if (result.ok) {
                 const body = await result.json()
-                console.log(body.followed_list)
                 setFollowedCreators(body.followed_list)
             } else {
                 alert("Something went wrong")

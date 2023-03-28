@@ -222,9 +222,7 @@ function QuizDTOResolve(quiz_dto){
         for(let j=0;j<answers_dto.length;j++){
             answers[j]= new Answer(answers_dto[j].is_correct,answers_dto[j].answer_text,1+j)
         }
-        console.log(answers)
         new_questions[i]=new Question_Info(question_text,answers)
     }
     return new QuizInfo(name,new_questions)
 }
-//question_info={question1}

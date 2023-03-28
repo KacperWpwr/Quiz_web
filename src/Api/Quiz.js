@@ -21,7 +21,7 @@ export async function addQuizToHistory(id){
     if(credentials){
         const date = new Date()
         const request_Date = date.getFullYear()+'-'+(date.getUTCMonth()+1)+'-'+date.getUTCDate()+' '+date.getHours()+':'+date.getMinutes()
-        console.log(request_Date)
+
         const data={
             quiz_id:id,
             username: credentials.login,
@@ -72,7 +72,6 @@ export async function hasRated(quiz_id){
     const credentials = getCookie("credentials")
 
     const path = api_path+"/user/"+credentials.login+"/given-opinion?quiz="+quiz_id
-    console.log(quiz_id)
 
     return fetch(path,{
         credentials: "omit",

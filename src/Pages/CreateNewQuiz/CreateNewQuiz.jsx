@@ -185,7 +185,7 @@ function getQuestionEditor(question_editor_props,question){
     return <QuestionEditor props={question_editor_props} question_in={question}/>
 }
 
-//id,questions,setQuestions,setEditorActive
+
 function QuestionEditor({props,question_in}){
     const [is_edit,setIsEdit]= useState(true)
     const [question,setQuestion] = useState(question_in.question_text)
@@ -248,7 +248,6 @@ function EditForm({props}){
         answers.forEach(answer=>{
             if(answer.id===id){
                 new_answers.push(new Answer(answer.id,answer.is_correct, input))
-                console.log(input)
             }else{
                 new_answers.push(new Answer(answer.id,answer.is_correct,answer.text))
             }
@@ -328,7 +327,6 @@ function QuestionsToDTO(questions){
                 is_correct:answer.is_correct,
                 answer_text:answer.text
             }
-            console.log(JSON.stringify(answer_dto))
             answers_dtos.push(answer_dto)
         })
         const question_dto={
@@ -337,6 +335,5 @@ function QuestionsToDTO(questions){
         }
         questions_dtos.push(question_dto)
     })
-    console.log(JSON.stringify(questions_dtos))
     return questions_dtos
 }

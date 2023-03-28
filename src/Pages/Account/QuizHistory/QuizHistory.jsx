@@ -10,7 +10,6 @@ export default function QuizHistory(){
             if(request.ok){
                 const body = await request.json()
                 setQuizHistory(body.quiz_history)
-                console.log(body)
             }
         }
         fetch_history()

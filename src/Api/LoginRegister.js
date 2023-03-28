@@ -1,5 +1,4 @@
 import api_path from "./Path";
-import {createCookie} from "./CookieManagement";
 
 const login_path="/user/auth/login"
 const register_path="/user/auth/register"

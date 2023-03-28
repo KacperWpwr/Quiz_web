@@ -75,13 +75,7 @@ function getQuizDisplay(name,id){
         </div>
     )
 }
-//TODO: quiz rating display
-/*
-            <div className="user-quizzes-quiz-display-rating-display">
-                <div className="user-quizzes-quiz-display-times-taken">Times taken: 4343</div>
-                <div className="user-quizzes-quiz-display-rating">Rating: 54</div>
-            </div>
-*/
+
 function getPageSelectionView(page_num,current_page,setCurrentPage){
     let return_list =  []
 

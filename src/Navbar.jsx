@@ -30,7 +30,6 @@ export default function Navbar({is_logged,setIsLogged}){
             const result = await searchUserStrict(text.substring(1,text.length))
             if(result.ok){
                 const body=await result.json()
-                console.log(body)
                 setSearchResults(body)
             }
             return

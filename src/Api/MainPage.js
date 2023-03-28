@@ -19,7 +19,6 @@ export async function getRecentQuizes(){
 export async function getProposedQuizes(){
     const credentials = getCookie("credentials")
     const path = api_path+"/user/"+credentials.login+"/proposed-quizzes"
-    console.log(path)
     return fetch(path,{
         credentials: 'omit',
         mode: 'cors',

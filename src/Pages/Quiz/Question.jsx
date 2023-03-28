@@ -50,5 +50,3 @@ function check(props,is_correct){
     props.setQuestionNum(props.question_num+1)
 }
 
-//
-//

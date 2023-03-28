@@ -20,7 +20,6 @@ export default function AccountInfo(){
                 setTempLogin(body.login)
                 setEmail(body.email)
                 setTempEmail(body.email)
-                console.log(newlineToBR(body.description))
                 setDescription(body.description)
                 setTempDescription(body.description)
 
@@ -58,7 +57,6 @@ export default function AccountInfo(){
 
             //Login change fetch
             if(temp_login!==login){
-                console.log("Changing login")
                 const response =await changeLogin(temp_login)
                 const body = await response.json()
                 if(response.ok){
@@ -195,9 +193,8 @@ function getDescriptionTextField(temp_description,setTempDescription){
 }
 function newlineToBR(string){
     let splitted = string.split('\n')
-    console.log(splitted)
     splitted=splitted.map(split=>split+" <br/>")
-    console.log()
+
     let result =''
     splitted.forEach(split=>{
         result= result+split

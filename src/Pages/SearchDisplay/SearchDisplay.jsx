@@ -1,4 +1,4 @@
-import {getQuizById, quizSearchAdvanced} from "../../Api/Quiz";
+import { quizSearchAdvanced} from "../../Api/Quiz";
 import {createCookie} from "../../Api/CookieManagement";
 import {useEffect, useState} from "react";
 import {searchUserAdvanced} from "../../Api/User";

@@ -29,7 +29,6 @@ export default function CreatorPage({is_logged}){
     useEffect(()=>{
         const fetch_info = async ()=>{
             const result = await getCreatorInfo()
-            console.log(result)
             if(result.ok){
                 const body = await result.json()
                 setCreatorName(body.username)
@@ -46,7 +45,6 @@ export default function CreatorPage({is_logged}){
             const result = await getCreatorNewest()
             if(result.ok){
                 const body = await result.json()
-                console.log(body)
                 setNewest(body.quiz_list)
                 setIsNewest(true)
             }else {
@@ -58,7 +56,6 @@ export default function CreatorPage({is_logged}){
             const result = await checkIsFollowed()
             if(result.ok){
                 const body = await result.json()
-                console.log(body)
                 if(body){
                     setIsFollowing(true)
                 }

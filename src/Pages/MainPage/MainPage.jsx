@@ -17,10 +17,6 @@ import default_image from "../../Images/empty.jpg"
      }
  }
 
- const quizes =   [new Quiz_Information("My First Quiz","Admin",30),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10),new Quiz_Information("Some Quiz Name","Some Author",10)]
-
- const profiles =[new Profile_Info("Admin",7),new Profile_Info("User3",3),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4),new Profile_Info("Person",4)]
-
 
 export default function MainPage({is_logged}){
     const  [recent_quizzes, setRecentQuizzes] = useState([])

@@ -58,7 +58,6 @@ function loginFunction(setLogged,logging_props){
         const response = await Login(login,password)
         const body = await response.json();
         if(response.ok){
-            console.log(body)
             const date = new Date();
             date.setDate(new Date()+ 24*60*60*1000)
 

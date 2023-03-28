@@ -102,7 +102,6 @@ function registerFunction(setLogged,register_props){
     }
 
     if(!checkbox){
-        console.log("No checkbox")
         register_props.setCheckboxCorrect(false)
         input_present=false
     }
